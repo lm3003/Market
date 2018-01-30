@@ -17,7 +17,7 @@ public class Administrator {
     }
 
     /**
-     * 
+     * user_id
      */
     int id;
 
@@ -44,42 +44,42 @@ public class Administrator {
 
 
     /**
-     * 
+     * to add item to the catalog
      */
     public void addItem() {
         // TODO implement here
     }
 
     /**
-     * 
+     * to update an item
      */
     public void updateItem() {
         // TODO implement here
     }
 
     /**
-     * 
+     * delete an item form the catalog
      */
     public void deleteItem() {
         // TODO implement here
     }
 
     /**
-     * 
+     * add another admin
      */
     public void addAdmin() {
         // TODO implement here
     }
 
     /**
-     * 
+     * add a customer account
      */
     public void addCustomerAccount() {
         // TODO implement here
     }
 
     /**
-     * 
+     * remove a customer account
      */
     public void removeCustomerAccount() {
         // TODO implement here
