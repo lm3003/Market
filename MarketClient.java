@@ -7,6 +7,10 @@ import java.rmi.Naming;
 //
 //lmodi
 
+// Ryan: Here we have a violation of separation of concerns in that
+// we are mixing Client and "framework" information togther. We need to isolate
+// the "framework" specific details in the form of a Controller.
+
 /**
  * MarketClient - Value in the 'name' variable should be the location
  * of the MarketServer.

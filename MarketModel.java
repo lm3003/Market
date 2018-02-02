@@ -1,4 +1,4 @@
-
+// Ryan: Are you using all classes in the util package, if not please only include those you are.
 import java.util.*;
 
 //Honor Pledge:
@@ -7,6 +7,8 @@ import java.util.*;
 //received any help on this assignment.
 //
 //lmodi
+
+// Ryan: Shouldn't the Model be doing something here?
 
 /**
  * 
