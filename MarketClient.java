@@ -17,25 +17,30 @@ import java.rmi.Naming;
  *
  */
 public class MarketClient {
-	public static void main(String args[]){
+	private String[] credentials;
+	private Market myMarket;
+	
+	public MarketClient(String[] credentials) {
+		this.credentials = credentials;
+	}
+	
+	//connect to server controller to authentication
+	public boolean authenticate() {
+		boolean serverMessage = false;
 		// RMI Security Manager
 		System.setSecurityManager(new SecurityManager());
-		
-		String serverMessage;
-
 		try{
 			String name = "//tesla.cs.iupui.edu:2096/oad/MarketServer";
 			// Attempt to locate the MarketServer...
-			Market myMarket = (Market) Naming.lookup(name);
-			System.out.println("Poking Server");
-			serverMessage = myMarket.getItem();
-			System.out.println("Message from Server:" + serverMessage);	
+			System.out.println("Authenticating...");
+			myMarket = (Market) Naming.lookup(name);
+			serverMessage= myMarket.getAuthentication(this.credentials);
 		} catch(Exception e){
 			System.out.println("MarketClient Exception: " +
 			e.getMessage());
 			e.printStackTrace();
 		}
 		
-		System.exit(0);
+		return serverMessage;	
 	}
 }

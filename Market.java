@@ -19,6 +19,6 @@ public interface Market extends java.rmi.Remote{
 	 * @return Transaction ID
 	 * @throws java.rmi.RemoteException
 	 */
-	public String getItem() throws java.rmi.RemoteException;
+	public boolean getAuthentication(String[] credentials) throws java.rmi.RemoteException;
 
 }
