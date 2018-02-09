@@ -17,6 +17,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class MarketServer extends UnicastRemoteObject implements Market{
 	
 	private String name;
+	private String[] credentials;
 
 	public MarketServer(String name) throws RemoteException {
 		super(); 
@@ -26,8 +27,11 @@ public class MarketServer extends UnicastRemoteObject implements Market{
 	/**
 	 * Implemented remote method from market interface.
 	 */
-	public synchronized String getItem() throws RemoteException {
-		return "Hello Client";
+	public synchronized boolean getAuthentication(String[] credentials) throws RemoteException {
+		this.credentials = new String[2];
+		this.credentials = credentials;
+		MarketModel marketModel = new MarketModel(this.credentials);
+		return marketModel.authenticate();
 	}
 	public static void main(String[] args) {
 		// Set the RMI Security Manager...
