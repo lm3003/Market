@@ -9,6 +9,10 @@ import java.rmi.server.UnicastRemoteObject;
 //
 //lmodi
 
+// Ryan: Here we have a violation of separation of concerns in that
+// we are mixing Server and "framework" information togther. We need to isolate
+// the "framework" specific details in the form of a Controller.
+
 /**
  * MarketServer - Must implement any and all methods found in the Bank
  * interface. The variable 'name' must include the location where the
