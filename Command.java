@@ -5,6 +5,6 @@
 //
 //lmodi
 
-public abstract class MarketView {
-	abstract void implementView();
+public interface Command {
+	boolean execute();
 }

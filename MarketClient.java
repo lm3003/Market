@@ -10,6 +10,8 @@ import java.rmi.Naming;
 // Ryan: Here we have a violation of separation of concerns in that
 // we are mixing Client and "framework" information togther. We need to isolate
 // the "framework" specific details in the form of a Controller.
+// Fixed: I have now implemented MarketClientController to ensure separation of concerns. This class only deals with Java RMI
+
 
 /**
  * MarketClient - Value in the 'name' variable should be the location
@@ -17,30 +19,30 @@ import java.rmi.Naming;
  *
  */
 public class MarketClient {
-	private String[] credentials;
 	private Market myMarket;
 	
-	public MarketClient(String[] credentials) {
-		this.credentials = credentials;
+	//default constructor
+	public MarketClient() {
+	}
+	
+	public Market getConnectionInstance() {
+		connect();
+		return myMarket;
 	}
 	
 	//connect to server controller to authentication
-	public boolean authenticate() {
-		boolean serverMessage = false;
+	public void connect() {
 		// RMI Security Manager
 		System.setSecurityManager(new SecurityManager());
 		try{
 			String name = "//tesla.cs.iupui.edu:2096/oad/MarketServer";
 			// Attempt to locate the MarketServer...
-			System.out.println("Authenticating...");
 			myMarket = (Market) Naming.lookup(name);
-			serverMessage= myMarket.getAuthentication(this.credentials);
+			System.out.println("Successfully connected to server");
 		} catch(Exception e){
 			System.out.println("MarketClient Exception: " +
 			e.getMessage());
 			e.printStackTrace();
-		}
-		
-		return serverMessage;	
+		}	
 	}
 }

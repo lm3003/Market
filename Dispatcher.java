@@ -1,23 +1,28 @@
-
+//Honor Pledge:
+//
+//I pledge that I have neither given nor 
+//received any help on this assignment.
+//
+//lmodi
 public class Dispatcher {
 	
 	private String userName;
-	private CustomerView customerView;
-	private AdminView adminView;
+	
 	
 	public Dispatcher(String userName) {
 		this.userName = userName;
 	}
 	
-	public String getView() {
+	public void dispatchView() {
+		AbstractFactory marketFactory = FactoryCreator.getFactory("MarketFactory");
 		if(userName.equals("customer")) {
-			customerView = new CustomerView();
-			return customerView.getView();
+			MarketView marketView = marketFactory.getView("customerView");
+			marketView.implementView();
 		} else if (userName.equals("admin")) {
-			adminView = new AdminView();
-			return adminView.getView();
+			MarketView marketView = marketFactory.getView("adminView");
+			marketView.implementView();
 		}else {
-			return null;
+			return;
 		}
 	}
 
