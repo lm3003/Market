@@ -1,6 +1,5 @@
-
 // Ryan: Are you using all classes in the util package, if not please only include those you are.
-// Fixed: Removed util package as it is not being used now.
+import java.util.*;
 
 //Honor Pledge:
 //
@@ -9,16 +8,16 @@
 //
 //lmodi
 
-public class Administrator {
+public class Customer {
 
     /**
      * Default constructor
      */
-    public Administrator() {
+    public Customer() {
     }
 
     /**
-     * user_id
+     * 
      */
     int id;
 
@@ -40,49 +39,54 @@ public class Administrator {
     /**
      * 
      */
+    String address;
+
+    /**
+     * 
+     */
     String email;
 
+    /**
+     * 
+     */
+    int shoppingCartId;
+
+    /**
+     * 
+     */
+    String creditCardInfo;
+
+
+
+
+
 
 
     /**
-     * to add item to the catalog
+     * 
      */
-    public void addItem() {
+    public void browse() {
         // TODO implement here
     }
 
     /**
-     * to update an item
+     * 
      */
-    public void updateItem() {
+    public void purchaseItem() {
         // TODO implement here
     }
 
     /**
-     * delete an item form the catalog
+     * 
      */
-    public void deleteItem() {
+    public void registerAccount() {
         // TODO implement here
     }
 
     /**
-     * add another admin
+     * 
      */
-    public void addAdmin() {
-        // TODO implement here
-    }
-
-    /**
-     * add a customer account
-     */
-    public void addCustomerAccount() {
-        // TODO implement here
-    }
-
-    /**
-     * remove a customer account
-     */
-    public void removeCustomerAccount() {
+    public void addToCart() {
         // TODO implement here
     }
 

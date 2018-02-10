@@ -1,8 +1,8 @@
+
 import java.util.List;
 
 // Ryan: Are you using all classes in the util package, if not please only include those you are.
-// Fixed: Removed util as it is not being used
-
+// Fixed: Fixed as requested
 
 //Honor Pledge:
 //
@@ -15,8 +15,7 @@ import java.util.List;
 // Ryan: Shouldn't the Model be doing something here?
 
 // Fixed: For the first assignment, Model only was a part of the skeleton framework that we created according to the requirements.
-// Now it helps in credential verification.
-
+// Now it helps in credential verification by acting as an invoker
 /**
  * 
  */
