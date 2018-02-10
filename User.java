@@ -5,6 +5,7 @@
 //
 //lmodi
 
+//User class to represent users
 public class User {
 	private String userName;
 	private String password;

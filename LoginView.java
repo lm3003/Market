@@ -7,6 +7,7 @@
 
 import java.util.Scanner;
 
+
 public class LoginView extends MarketView{
 	
 //	default Constructor

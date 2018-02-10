@@ -19,6 +19,8 @@ import java.util.List;
 /**
  * 
  */
+
+//Acts as an invoker for command pattern
 public class MarketModel {
 
     /**

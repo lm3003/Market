@@ -15,7 +15,7 @@ import java.rmi.server.UnicastRemoteObject;
 // Fixed: Added a separate Server application controller to ensure separation of concerns.
 
 /**
- * MarketServer - Must implement any and all methods found in the Bank
+ * MarketServer - Must implement any and all methods found in the Market
  * interface. The variable 'name' must include the location where the
  * MarketServer is going to be registered with RMI to run.
  */

@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 //
 //lmodi
 
-
+//Market side controller
 public class MarketServerController{
 	
 	private String[] credentials;

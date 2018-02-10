@@ -7,7 +7,7 @@
 
 /**
  * This interface serves as the proxy between the MarketServer and the
- * MarketClient. The MarketClient must implement this method.
+ * MarketClient. The MarketServer must implement this method.
  *
  */
 

@@ -4,6 +4,8 @@
 //received any help on this assignment.
 //
 //lmodi
+
+//Dispatcher class for dispatching views
 public class Dispatcher {
 	
 	private String userName;
@@ -13,6 +15,7 @@ public class Dispatcher {
 		this.userName = userName;
 	}
 	
+	//Select views
 	public void dispatchView() {
 		AbstractFactory marketFactory = FactoryCreator.getFactory("MarketFactory");
 		if(userName.equals("customer")) {

@@ -4,6 +4,8 @@
 //received any help on this assignment.
 //
 //lmodi
+
+//Client side class for app startup
 public class ApplicationStartup {
 
 	public static void main(String[] args) {

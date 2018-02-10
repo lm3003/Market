@@ -5,6 +5,8 @@
 //
 //lmodi
 
+
+//Command for authentication
 public class Authenticate implements Command{
 	private User user;
 	
