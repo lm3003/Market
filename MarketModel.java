@@ -1,5 +1,7 @@
 
-import java.util.*;
+// Ryan: Are you using all classes in the util package, if not please only include those you are.
+// Fixed: Removed util as it is not being used
+
 
 //Honor Pledge:
 //
@@ -7,6 +9,12 @@ import java.util.*;
 //received any help on this assignment.
 //
 //lmodi
+
+
+// Ryan: Shouldn't the Model be doing something here?
+
+// Fixed: For the first assignment, Model only was a part of the skeleton framework that we created according to the requirements.
+// Now it helps in credential verification.
 
 /**
  * 

@@ -9,30 +9,26 @@ import java.rmi.server.UnicastRemoteObject;
 //
 //lmodi
 
+
+// Ryan: Here we have a violation of separation of concerns in that
+// we are mixing Server and "framework" information togther. We need to isolate
+// the "framework" specific details in the form of a Controller.
+
+// Fixed: Added a separate Server application controller to ensure separation of concerns. Thanks for the correction!
+
+
 /**
  * MarketServer - Must implement any and all methods found in the Bank
  * interface. The variable 'name' must include the location where the
  * MarketServer is going to be registered with RMI to run.
  */
-public class MarketServer extends UnicastRemoteObject implements Market{
+public class MarketServer extends UnicastRemoteObject{
 	
-	private String name;
-	private String[] credentials;
-
 	public MarketServer(String name) throws RemoteException {
 		super(); 
-		this.name = name;
 	}
 
-	/**
-	 * Implemented remote method from market interface.
-	 */
-	public synchronized boolean getAuthentication(String[] credentials) throws RemoteException {
-		this.credentials = new String[2];
-		this.credentials = credentials;
-		MarketModel marketModel = new MarketModel(this.credentials);
-		return marketModel.authenticate();
-	}
+	
 	public static void main(String[] args) {
 		// Set the RMI Security Manager...
 				System.setSecurityManager(new SecurityManager());
@@ -44,7 +40,7 @@ public class MarketServer extends UnicastRemoteObject implements Market{
 					String name = "//tesla.cs.iupui.edu:2096/oad/MarketServer";
 					
 					// Create a new instance of a MarketServer.
-					MarketServer market = new MarketServer(name);
+					  MarketServer market = new MarketServer(name);
 					
 					System.out.println("MarketServer: binding it to name: " + name);
 					

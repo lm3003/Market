@@ -1,14 +1,23 @@
+//Honor Pledge:
+//
+//I pledge that I have neither given nor 
+//received any help on this assignment.
+//
+//lmodi
+
 import java.util.Scanner;
 
-public class LoginView {
+public class LoginView extends MarketView{
 	
 //	default Constructor
-	public LoginView() {
-		
-		
+	public LoginView() {}
+	
+	@Override
+	void implementView() {
+		performLogin();
 	}
 	
-	public static void main(String[] args) {
+	public void performLogin() {
 		String userName;
 		String password;
 		String[] credentials = new String[2];
@@ -22,9 +31,11 @@ public class LoginView {
 		scanner.close();
 		FrontController frontController = new FrontController();
 		//Invalid user view or customer view or admin view
-		System.out.println(frontController.getView(credentials));
+		frontController.getView(credentials);
 		System.exit(0);
 	}
+
+	
 	
 	
 	

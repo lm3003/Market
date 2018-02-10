@@ -1,5 +1,5 @@
 
-public class AdminView {
+public class AdminView extends MarketView {
 	
 	//default constructor
 	public AdminView() {
@@ -7,8 +7,14 @@ public class AdminView {
 	}
 	
 	//get admin view
-	public String getView() {
-		return "Admin authenticated Successfully. \n Welcome Admin, what would you like to do today?"; 
+	@Override
+	void implementView() {
+		welcomeMessage();
+	}
+	
+	
+	public void welcomeMessage() {
+		System.out.println("Admin authenticated Successfully. \n Welcome Admin, what would you like to do today?"); 
 	}
 
 }

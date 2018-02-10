@@ -1,4 +1,9 @@
-
+//Honor Pledge:
+//
+//I pledge that I have neither given nor 
+//received any help on this assignment.
+//
+//lmodi
 public class FrontController {
 	private String[] credentials;
 	private Dispatcher dispatcher;
@@ -11,22 +16,22 @@ public class FrontController {
 	
 	
 	//Return the invalid view to user
-	public String invalidView() {
-		return "Username or Password is invalid";
+	public void invalidView() {
+		System.out.println("Username or Password is invalid");
 	}
 	
 	public boolean isAuthenticated() {
-		MarketClient marketClient = new MarketClient(credentials);
-		return marketClient.authenticate();
+		MarketClientController marketClientController = new MarketClientController(credentials);
+		return marketClientController.authenticate();
 	}
 	
-	public String getView(String[] credentials) {
+	public void getView(String[] credentials) {
 		this.credentials = credentials;
 		if(isAuthenticated()) {
 			dispatcher = new Dispatcher(this.credentials[0]);
-			return(dispatcher.getView());
+				dispatcher.getView();
 		}else {
-			return invalidView();
+				invalidView();
 		}
 	}
 

@@ -1,23 +1,28 @@
-
+//Honor Pledge:
+//
+//I pledge that I have neither given nor 
+//received any help on this assignment.
+//
+//lmodi
 public class Dispatcher {
 	
 	private String userName;
-	private CustomerView customerView;
-	private AdminView adminView;
+	private MarketView customerView;
+	private MarketView adminView;
 	
 	public Dispatcher(String userName) {
 		this.userName = userName;
 	}
 	
-	public String getView() {
+	public void getView() {
 		if(userName.equals("customer")) {
 			customerView = new CustomerView();
-			return customerView.getView();
+				customerView.implementView();
 		} else if (userName.equals("admin")) {
 			adminView = new AdminView();
-			return adminView.getView();
+			 	adminView.implementView();
 		}else {
-			return null;
+			return;
 		}
 	}
 
