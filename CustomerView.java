@@ -19,7 +19,7 @@ public class CustomerView extends MarketView{
 	
 	//get customer view
 	public void welcomeMessage() {
-		System.out.println("Customer Authenticated Successfully. \n Welcome Customer, what would you like to shop today?"); 
+		System.out.println("Customer Authenticated Successfully. \nWelcome Customer, what would you like to shop today?"); 
 	}
 
 }

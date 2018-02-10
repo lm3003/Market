@@ -10,8 +10,8 @@ public class FrontController {
 	
 	
 	//Constructor accepts Credentials
-	public FrontController() {
-		
+	public FrontController(String[] credentials) {
+		this.credentials = credentials;
 	}
 	
 	
@@ -25,13 +25,12 @@ public class FrontController {
 		return marketClientController.authenticate();
 	}
 	
-	public void getView(String[] credentials) {
-		this.credentials = credentials;
+	public void processAuthentication() {
 		if(isAuthenticated()) {
 			dispatcher = new Dispatcher(this.credentials[0]);
-				dispatcher.getView();
+			dispatcher.dispatchView();
 		}else {
-				invalidView();
+			invalidView();
 		}
 	}
 

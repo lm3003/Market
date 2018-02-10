@@ -7,20 +7,20 @@
 public class Dispatcher {
 	
 	private String userName;
-	private MarketView customerView;
-	private MarketView adminView;
+	
 	
 	public Dispatcher(String userName) {
 		this.userName = userName;
 	}
 	
-	public void getView() {
+	public void dispatchView() {
+		AbstractFactory marketFactory = FactoryCreator.getFactory("MarketFactory");
 		if(userName.equals("customer")) {
-			customerView = new CustomerView();
-				customerView.implementView();
+			MarketView marketView = marketFactory.getView("customerView");
+			marketView.implementView();
 		} else if (userName.equals("admin")) {
-			adminView = new AdminView();
-			 	adminView.implementView();
+			MarketView marketView = marketFactory.getView("adminView");
+			marketView.implementView();
 		}else {
 			return;
 		}

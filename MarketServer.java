@@ -22,10 +22,16 @@ import java.rmi.server.UnicastRemoteObject;
  * interface. The variable 'name' must include the location where the
  * MarketServer is going to be registered with RMI to run.
  */
-public class MarketServer extends UnicastRemoteObject{
+public class MarketServer extends UnicastRemoteObject implements Market{
 	
 	public MarketServer(String name) throws RemoteException {
 		super(); 
+	}
+	
+	@Override
+	public synchronized boolean authenticate(String[] credentials) throws RemoteException {
+		MarketServerController marketServerController = new MarketServerController(credentials);
+		return marketServerController.authenticate();
 	}
 
 	
@@ -54,6 +60,4 @@ public class MarketServer extends UnicastRemoteObject{
 				}
 
 	}
-
-
 }

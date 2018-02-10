@@ -14,7 +14,7 @@ public class AdminView extends MarketView {
 	
 	
 	public void welcomeMessage() {
-		System.out.println("Admin authenticated Successfully. \n Welcome Admin, what would you like to do today?"); 
+		System.out.println("Admin authenticated Successfully. \nWelcome Admin, what would you like to do today?"); 
 	}
 
 }

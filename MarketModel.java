@@ -1,3 +1,4 @@
+import java.util.List;
 
 // Ryan: Are you using all classes in the util package, if not please only include those you are.
 // Fixed: Removed util as it is not being used
@@ -20,30 +21,16 @@
  * 
  */
 public class MarketModel {
-	private String[] credentials;
 
     /**
      * Default constructor
      */
-    public MarketModel() {
+    public MarketModel() {}
+    
+    public boolean execute(Command command) {
+    	return command.execute();
     }
     
-    //constructor that accepts credentials
-    public MarketModel(String[] credentials) {
-    	this.credentials = credentials;
-    }
-    
-    //return authentication results
-    public boolean authenticate() {
-    	String userName = credentials[0];
-    	String password = credentials[1];
-    	if((userName.equals("customer") && password.equals("customer")) || (userName.equals("admin") && password.equals("admin"))) {
-    		return true;
-    	}else {
-    		return false;
-    	}
-    }
-
     /**
      * 
      */

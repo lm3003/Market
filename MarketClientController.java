@@ -19,7 +19,7 @@ public class MarketClientController {
 		try {
 			MarketClient marketClient = new MarketClient();
 			myMarket = marketClient.getConnectionInstance();
-			serverMessage = myMarket.getAuthentication(credentials);
+			serverMessage = myMarket.authenticate(credentials);
 		}catch(Exception ex) {
 			System.out.println("Client exception: " + ex.getMessage());
 		}
