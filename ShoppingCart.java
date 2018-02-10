@@ -10,6 +10,9 @@
 //
 //lmodi
 
+
+
+//Does nothing, For use in later assignments
 public class ShoppingCart {
 
     /**

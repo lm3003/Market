@@ -4,6 +4,8 @@
 //received any help on this assignment.
 //
 //lmodi
+
+
 public class CustomerView extends MarketView{
 	
 	//default constructor

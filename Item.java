@@ -8,6 +8,9 @@
 //
 //lmodi
 
+
+
+//Does nothing, For use in later assignments
 public class Item {
 
     /**

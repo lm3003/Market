@@ -6,7 +6,7 @@
 //lmodi
 
 
-
+//Client side controller for MVC architechture
 public class MarketClientController {
 	private String[] credentials;
 	private Market myMarket;

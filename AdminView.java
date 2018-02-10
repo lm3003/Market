@@ -4,6 +4,9 @@
 //received any help on this assignment.
 //
 //lmodi
+
+
+
 public class AdminView extends MarketView {
 	
 	//default constructor
@@ -17,7 +20,7 @@ public class AdminView extends MarketView {
 		welcomeMessage();
 	}
 	
-	
+	//Admin welcome message
 	public void welcomeMessage() {
 		System.out.println("Admin authenticated Successfully. \nWelcome Admin, what would you like to do today?"); 
 	}

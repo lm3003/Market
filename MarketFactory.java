@@ -4,6 +4,8 @@
 //received any help on this assignment.
 //
 //lmodi
+
+//Get concrete view instances from MarketFactory
 public class MarketFactory extends AbstractFactory {
 
 	@Override

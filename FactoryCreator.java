@@ -4,6 +4,8 @@
 //received any help on this assignment.
 //
 //lmodi
+
+//Class to get Factories
 public class FactoryCreator {
 	public static AbstractFactory getFactory(String choice) {
 		if(choice.equalsIgnoreCase("MarketFactory")) {

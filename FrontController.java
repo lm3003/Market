@@ -4,6 +4,8 @@
 //received any help on this assignment.
 //
 //lmodi
+
+//FrontController manages views
 public class FrontController {
 	private String[] credentials;
 	private Dispatcher dispatcher;
@@ -20,11 +22,13 @@ public class FrontController {
 		System.out.println("Username or Password is invalid");
 	}
 	
+	//Get authentication result
 	public boolean isAuthenticated() {
 		MarketClientController marketClientController = new MarketClientController(credentials);
 		return marketClientController.authenticate();
 	}
 	
+	//Act on dispatcher as per authentication result
 	public void processAuthentication() {
 		if(isAuthenticated()) {
 			dispatcher = new Dispatcher(this.credentials[0]);
