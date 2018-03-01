@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 //Honor Pledge:
 //
 //I pledge that I have neither given nor 
@@ -7,22 +9,32 @@
 
 
 
-public class AdminView extends MarketView {
-	
+public class AdminView{
+	private AdminViewController adminViewController;
 	//default constructor
 	public AdminView() {
-		
-	}
-	
-	//get admin view
-	@Override
-	void implementView() {
-		welcomeMessage();
+		this.adminViewController = new AdminViewController();
 	}
 	
 	//Admin welcome message
-	public void welcomeMessage() {
-		System.out.println("Admin authenticated Successfully. \nWelcome Admin, what would you like to do today?"); 
+	public void welcomeMessage(Session session) {
+		System.out.println("Admin Authenticated Successfully. \nWelcome Admin, Please select menu item number to proceed:");
+		System.out.println("1. Add Another Admin\n2. Browse Products\n3. Exit");
+		Scanner scanner = new Scanner(System.in);
+		int optionSelected = Integer.parseInt(scanner.next());
+		switch(optionSelected) {
+		case 1: 
+			break;
+		case 2:
+			adminViewController.browseProducts(session);
+			break;
+		case 3:
+			adminViewController.updateProduct(session);
+			break;
+		default:
+			System.out.println("Invalid Menu item number! Exiting...");
+			System.exit(0);
+		}
+		scanner.close();
 	}
-
 }

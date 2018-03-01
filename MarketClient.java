@@ -27,7 +27,7 @@ public class MarketClient {
 	
 	public Market getConnectionInstance() {
 		connect();
-		return myMarket;
+		return this.myMarket;
 	}
 	
 	//connect to server controller to authentication
@@ -36,9 +36,9 @@ public class MarketClient {
 		System.setSecurityManager(new SecurityManager());
 		try{
 			String name = "//tesla.cs.iupui.edu:2096/oad/MarketServer";
+			
 			// Attempt to locate the MarketServer...
-			myMarket = (Market) Naming.lookup(name);
-			System.out.println("Successfully connected to server");
+			this.myMarket = (Market) Naming.lookup(name);
 		} catch(Exception e){
 			System.out.println("MarketClient Exception: " +
 			e.getMessage());

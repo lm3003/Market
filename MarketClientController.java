@@ -1,3 +1,5 @@
+import java.util.List;
+
 //Honor Pledge:
 //
 //I pledge that I have neither given nor 
@@ -10,22 +12,38 @@
 public class MarketClientController {
 	private String[] credentials;
 	private Market myMarket;
-	public MarketClientController(String[] credentials) {
-		this.credentials = credentials;
+	private MarketClient marketClient;
+	public MarketClientController() {
+		this.marketClient = new MarketClient();
+		this.myMarket = this.marketClient.getConnectionInstance();
 	}
 	
-	public boolean authenticate() {
-		boolean serverMessage = false;
+	public String[] getCredentials() {
+		return this.credentials;
+	}
+
+	public void setCredentials(String[] credentials) {
+		this.credentials = credentials;
+	}
+
+	public Session authenticate(String[] credentials) {
+		setCredentials(credentials);
+		Session session = null;
 		try {
-			MarketClient marketClient = new MarketClient();
-			myMarket = marketClient.getConnectionInstance();
-			serverMessage = myMarket.authenticate(credentials);
+			session = this.myMarket.authenticate(getCredentials());
 		}catch(Exception ex) {
 			System.out.println("Client exception: " + ex.getMessage());
 		}
-		return serverMessage;
+		return session;
 	}
 	
+	public List<Item> browseProducts(Session session){
+		return this.myMarket.browseProducts(session);
+	}
+	
+	public void updateProduct(Session session, Item item) {
+		this.myMarket.updateProduct(session, item);
+	}
 	
 	
 	

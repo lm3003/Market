@@ -1,3 +1,5 @@
+import java.util.List;
+
 //Honor Pledge:
 //
 //I pledge that I have neither given nor 
@@ -19,6 +21,16 @@ public interface Market extends java.rmi.Remote{
 	 * @return Transaction ID
 	 * @throws java.rmi.RemoteException
 	 */
-	public boolean authenticate(String[] credentials) throws java.rmi.RemoteException;
+	public Session authenticate(String[] credentials) throws java.rmi.RemoteException;
+	
+	public List<Item> browseProducts(Session session);
+	
+//	@RequiresRole("customer")
+//	public void purchaseItems(Session session);
+	
+	@RequiresRole("admin")
+	public void updateProduct(Session session, Item item);
+	
+	
 
 }

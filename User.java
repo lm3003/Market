@@ -7,21 +7,38 @@
 
 //User class to represent users
 public class User {
-	private String userName;
-	private String password;
+	private String[] credentials;
 	
-	public User(String[] credentials) {
-		this.userName = credentials[0];
-		this.password = credentials[1];
+	//default constructor
+	public User() {
 	}
 	
-	public boolean authenticate() {
-    	if((this.userName.equals("customer") && this.password.equals("customer")) 
-    			|| (this.userName.equals("admin") && this.password.equals("admin"))) {
-    		return true;
+	public String[] getCredentials() {
+		return credentials;
+	}
+
+	public void setCredentials(String[] credentials) {
+		this.credentials = credentials;
+	}
+	
+	
+	public Session authenticate() {
+		Session session = new Session();
+    	if(this.credentials[0].equals("customer") && this.credentials[1].equals("customer")) {
+    		session.setRoleType("Customer");
+    		session.setUserName(this.credentials[0]);
+    		session.setAuthenticated(true);
+    		
+    	}else if(this.credentials[0].equals("admin") && this.credentials[1].equals("admin")) {
+    		session.setRoleType("Admin");
+    		session.setUserName(this.credentials[0]);
+    		session.setAuthenticated(true);
     	}else {
-    		return false;
+    		session.setRoleType("Invalid");
+    		session.setUserName(this.credentials[0]);
+    		session.setAuthenticated(false);
     	}
+    	return session;
     }
 
 }

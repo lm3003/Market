@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class GetAdminBrowseView {
+	Scanner scanner;	
+	//default constructor
+	public GetAdminBrowseView() {
+	}
+	
+	public int getInputFromUser() {
+		System.out.println("Please make your selection:");
+		System.out.println("1. Update an item");
+		System.out.println("2. Remove an item");
+		System.out.println("3. Exit");
+		int input = Integer.parseInt(getInput());
+		return input;
+	}
+	
+	private String getInput() {
+		this.scanner = new Scanner(System.in);
+		String input = scanner.next();
+		return input;
+	}
+	
+	public Item getProduct() {
+		System.out.print("\nPlease enter the Id of the product you want to update: ");
+		int id = Integer.parseInt(getInput());
+		Item item = new Item();
+		item.setId(id);
+		String[] getNewProductDetail = getNewProductDetail();
+		item.setName(getNewProductDetail[0]);
+		item.setDescription(getNewProductDetail[1]);
+		item.setQuantity(Integer.parseInt(getNewProductDetail[2]));
+		item.setPrice(Float.parseFloat(getNewProductDetail[3]));
+		return item;
+	}
+	
+	private String[] getNewProductDetail() {
+		String[] productInfo = new String[4];
+		System.out.print("\nPlease enter the name of the product: ");
+		productInfo[0] = getInput();
+		System.out.print("\nPlease enter the description of the product:");
+		productInfo[1] = getInput();
+		System.out.print("\nPlease enter the quantity of the product:");
+		productInfo[2] = getInput();
+		System.out.print("\nPlease enter the price of the product:");
+		productInfo[3] = getInput();
+		return productInfo;
+	}
+}

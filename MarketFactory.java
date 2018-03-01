@@ -14,10 +14,6 @@ public class MarketFactory extends AbstractFactory {
 			return null;
 		if(viewChoice.equalsIgnoreCase("LoginView")) {
 			return new LoginView();
-		} else if(viewChoice.equalsIgnoreCase("AdminView")) {
-			return new AdminView();
-		} else if(viewChoice.equalsIgnoreCase("CustomerView")) {
-			return new CustomerView();
 		}
 		return null;
 	}

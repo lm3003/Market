@@ -1,3 +1,5 @@
+import java.io.Serializable;
+import java.lang.reflect.Proxy;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -19,19 +21,13 @@ import java.rmi.server.UnicastRemoteObject;
  * interface. The variable 'name' must include the location where the
  * MarketServer is going to be registered with RMI to run.
  */
-public class MarketServer extends UnicastRemoteObject implements Market{
-	
-	public MarketServer(String name) throws RemoteException {
-		super(); 
-	}
-	
-	@Override
-	public synchronized boolean authenticate(String[] credentials) throws RemoteException {
-		MarketServerController marketServerController = new MarketServerController(credentials);
-		return marketServerController.authenticate();
+public class MarketServer extends UnicastRemoteObject implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+	public MarketServer() throws RemoteException{
+		
 	}
 
-	
 	public static void main(String[] args) {
 		// Set the RMI Security Manager...
 				System.setSecurityManager(new SecurityManager());
@@ -42,19 +38,20 @@ public class MarketServer extends UnicastRemoteObject implements Market{
 					// Location of MarketServer
 					String name = "//tesla.cs.iupui.edu:2096/oad/MarketServer";
 					
-					// Create a new instance of a MarketServer.
-					  MarketServer market = new MarketServer(name);
+					//AuthorizationInvocationHandler to check at method invocation  if session is authenticated to proceed
+					Market assignment = (Market) Proxy.newProxyInstance(Market.class.getClassLoader(), 
+												new Class<?>[] {Market.class},
+												new AuthorizationInvocationHandler(new ServerImpl()));
 					
 					System.out.println("MarketServer: binding it to name: " + name);
 					
 					// Binds the MarketServer to the RMI Service.
-					Naming.rebind(name, market);
+					Naming.rebind(name, assignment);
 					
 					System.out.println("Market Server Ready!");
 				} catch (Exception e){
 					System.out.println("Exception: " + e.getMessage());
 					e.printStackTrace();
 				}
-
-	}
+		}
 }
