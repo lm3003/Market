@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 
 public class LoginView extends MarketView{
-	
+	private String[] credentials;
 //	default Constructor
 	public LoginView() {}
 	
@@ -21,19 +21,19 @@ public class LoginView extends MarketView{
 	public void performLogin() {
 		String userName;
 		String password;
-		String[] credentials = new String[2];
 		System.out.println("Welcome to Market App...\nPlease enter your Username and Password to sign in.");
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Username: ");
 		userName = scanner.nextLine();
 		System.out.print("Password: ");
 		password = scanner.nextLine();
-		credentials[0] = userName;
-		credentials[1] = password;
-		scanner.close();
-		FrontController frontController = new FrontController(credentials);
+		this.credentials = new String[2];
+		this.credentials[0] = userName;
+		this.credentials[1] = password;
+		FrontController frontController = new FrontController();
 		//Invalid user view or customer view or admin view
-		frontController.processAuthentication();
+		frontController.processAuthentication(this.credentials);
+		scanner.close();
 		System.exit(0);
 	}
 

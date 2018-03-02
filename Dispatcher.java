@@ -8,22 +8,21 @@
 //Dispatcher class for dispatching views
 public class Dispatcher {
 	
-	private String userName;
+	private Session session;
 	
 	
-	public Dispatcher(String userName) {
-		this.userName = userName;
+	public Dispatcher(Session session) {
+		this.session = session;
 	}
 	
 	//Select views
 	public void dispatchView() {
-		AbstractFactory marketFactory = FactoryCreator.getFactory("MarketFactory");
-		if(userName.equals("customer")) {
-			MarketView marketView = marketFactory.getView("customerView");
-			marketView.implementView();
-		} else if (userName.equals("admin")) {
-			MarketView marketView = marketFactory.getView("adminView");
-			marketView.implementView();
+		if(this.session.getRoleType().equalsIgnoreCase("admin")) {
+			AdminView adminView = new AdminView();
+			adminView.welcomeMessage(this.session);
+		} else if (this.session.getRoleType().equalsIgnoreCase("customer")) {
+			CustomerView customerView = new CustomerView();
+			customerView.welcomeMessage(this.session);
 		}else {
 			return;
 		}

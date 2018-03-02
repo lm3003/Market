@@ -8,5 +8,5 @@
 
 //Command interface to be implemented by all commands
 public interface Command {
-	boolean execute();
+	public Session execute();
 }

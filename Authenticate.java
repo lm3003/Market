@@ -15,7 +15,7 @@ public class Authenticate implements Command{
 	}
 	
 	@Override
-	public boolean execute() {
+	public Session execute() {
 		return user.authenticate();	
 	}
 
