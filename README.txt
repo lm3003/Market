@@ -27,7 +27,7 @@ You should see separate screens for both admin and customer
 
 8. For customer facility to browse products and add to cart has been implemented. For admin, facility to browse products and update products has been implemented. Other options are dummy and might exit the program 
 
-8. Once you have completed this work please remember to clean up by terminating the RMI Registry. You 
+9. Once you have completed this work please remember to clean up by terminating the RMI Registry. You 
    can bring this process to the foreground through the following command:
    % fg
    At which point you can kill the process.
