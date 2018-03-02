@@ -31,6 +31,12 @@ public interface Market extends java.rmi.Remote{
 	@RequiresRole("admin")
 	public void updateProduct(Session session, Item item);
 	
+	@RequiresRole("customer")
+	public void saveProductToCart(Session session, int productId);
+	
+	@RequiresRole("customer")
+	public List<Item> viewShoppingCartProducts(Session session);
+	
 	
 
 }

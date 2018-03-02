@@ -22,12 +22,14 @@ import java.util.List;
 //Acts as an invoker for command pattern
 public class MarketModel implements Serializable{
 	private List<Item> productList;
+	private List<Item> shoppingCartList;
    
 	private static final long serialVersionUID = 1L;
 
 	//Default Constructor
     public MarketModel() {
     	this.productList = createItems();
+    	this.shoppingCartList = new ArrayList<>();
     }
     
     public Session execute(Command command) {
@@ -36,8 +38,13 @@ public class MarketModel implements Serializable{
     
     //method to browse products
     public List<Item> browseProducts(){
-    	return productList;
+    	return this.productList;
     }
+    
+    //send the shopping cart list
+    public List<Item> viewShoppingCartProducts(Session session) {
+		return this.shoppingCartList;
+	}
     
     //update products
     public void updateProduct(Item item) {
@@ -51,6 +58,13 @@ public class MarketModel implements Serializable{
     		ex.printStackTrace();
     	}
     }
+    
+    //add to cart
+    public void saveProductToCart(int productId) {
+		this.shoppingCartList.add(this.productList.get(productId-1));
+	}
+    
+    
     
     //create products until database connected
     private List<Item> createItems(){

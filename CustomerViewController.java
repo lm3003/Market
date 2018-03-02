@@ -1,28 +1,60 @@
 import java.util.List;
-import java.util.Scanner;
+
+//Honor Pledge:
+//
+//I pledge that I have neither given nor 
+//received any help on this assignment.
+//
+//lmodi
 
 public class CustomerViewController{
 	private FrontController frontController;
+	private CustomerBrowseView customerBrowseView;
+	private ListProductsView listProductsView;
 	//default constructor
 	public CustomerViewController() {
 		this.frontController = new FrontController();
+		this.customerBrowseView = new CustomerBrowseView();
+		this.listProductsView = new ListProductsView();
 	}
 	
 	public void browseProducts(Session session) {
-
 		List<Item> productList = this.frontController.browseProducts(session);
-		BrowseProducts browseProducts = new BrowseProducts();
-		browseProducts.listProductList(productList);
-		getInputFromUser();
+		this.listProductsView.listProductList(productList);
+		int input = this.customerBrowseView.getInputFromUser();
+		implementUserSelection(session, input);
 	}
 	
-	public void getInputFromUser() {
-		System.out.println("Please make your selection:");
-		System.out.println("1. Add an item to cart");
-		System.out.println("2. Purchase items in cart");
-		System.out.println("3. Exit");
-		Scanner scanner = new Scanner(System.in);
-		System.exit(0);
+	private void implementUserSelection(Session session,int input) {
+		switch(input) {
+		case 1:
+			saveProductToCart(session);
+			break;
+		case 2:
+			break;
+		default:
+			System.out.println("Exiting system....");
+			System.exit(0);
+		}
+	}
+	
+	public void saveProductToCart(Session session) {
+		int productId = this.customerBrowseView.getProductId();
+		this.frontController.saveProductToCart(session, productId);
+		System.out.println("\nProduct saved to cart successfully...\n");
+		viewShoppingCartProducts(session);
+	}
+	
+	public void viewShoppingCartProducts(Session session) {
+		List<Item> productList = this.frontController.viewShoppingCartProducts(session);
+		if(productList.isEmpty()) {
+			System.out.println("Your Cart is empty!");
+			return;
+		}
+		System.out.println("Items in your Cart:");
+		this.listProductsView.listProductList(productList);
+		int input = this.customerBrowseView.getInputFromUser();
+		implementUserSelection(session, input);
 	}
 	
 }

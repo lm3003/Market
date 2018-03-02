@@ -23,10 +23,10 @@ public class CustomerView{
 		int optionSelected = Integer.parseInt(scanner.next());
 		switch(optionSelected) {
 		case 1:
-			customerViewController.browseProducts(session);
+			this.customerViewController.browseProducts(session);
 			break;
 		case 2:
-			
+			this.customerViewController.viewShoppingCartProducts(session);
 			break;
 		default:
 			System.out.println("Invalid Menu item number! Exiting...");

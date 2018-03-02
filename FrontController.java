@@ -54,12 +54,22 @@ public class FrontController {
 	
 	//delegate browse products action
 	public List<Item> browseProducts(Session session) {
-		return marketClientController.browseProducts(session);
+		return this.marketClientController.browseProducts(session);
 	}
 	
 	//delegate update product action
 	public void updateProduct(Session session, Item item) {
-		marketClientController.updateProduct(session, item);
+		this.marketClientController.updateProduct(session, item);
+	}
+	
+	//delegate action to update cart
+	public void saveProductToCart(Session session, int productId) {
+		this.marketClientController.saveProductToCart(session, productId);
+	}
+	
+	//delegate action to view shopping cart item
+	public List<Item> viewShoppingCartProducts(Session session){
+		return this.marketClientController.viewShoppingCartProducts(session);
 	}
 
 }

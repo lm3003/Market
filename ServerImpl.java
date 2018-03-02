@@ -2,6 +2,13 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.List;
 
+//Honor Pledge:
+//
+//I pledge that I have neither given nor 
+//received any help on this assignment.
+//
+//lmodi
+
 public class ServerImpl implements Market, Serializable{
 	private MarketServerController marketServerController;
 	public ServerImpl() throws RemoteException { 
@@ -28,5 +35,17 @@ public class ServerImpl implements Market, Serializable{
 	public void updateProduct(Session session, Item item) {
 		this.marketServerController.updateProduct(item);		
 	}
+
+	@Override
+	public void saveProductToCart(Session session, int productId) {
+		this.marketServerController.saveProductToCart(productId);
+	}
+
+	@Override
+	public List<Item> viewShoppingCartProducts(Session session) {
+		return this.marketServerController.viewShoppingCartProducts(session);
+	}
+	
+	
 	
 }

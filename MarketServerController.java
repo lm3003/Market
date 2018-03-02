@@ -40,15 +40,23 @@ public class MarketServerController implements Serializable{
 		Authenticate authenticate = new Authenticate(user);
 		
 		//Intializing invoker
-		return marketModel.execute(authenticate);
+		return this.marketModel.execute(authenticate);
 	}
 	
 	public List<Item> browseProducts(){
-		return marketModel.browseProducts();
+		return this.marketModel.browseProducts();
 	}
 	
 	public void updateProduct(Item item) {
-		marketModel.updateProduct(item);
+		this.marketModel.updateProduct(item);
+	}
+	
+	public void saveProductToCart(int productId) {
+		this.marketModel.saveProductToCart(productId);
+	}
+	
+	public List<Item> viewShoppingCartProducts(Session session) {
+		return this.marketModel.viewShoppingCartProducts(session);
 	}
 	
 

@@ -1,9 +1,16 @@
 import java.util.Scanner;
 
-public class GetAdminBrowseView {
+//Honor Pledge:
+//
+//I pledge that I have neither given nor 
+//received any help on this assignment.
+//
+//lmodi
+
+public class AdminBrowseView {
 	Scanner scanner;	
 	//default constructor
-	public GetAdminBrowseView() {
+	public AdminBrowseView() {
 	}
 	
 	public int getInputFromUser() {

@@ -1,20 +1,28 @@
 import java.util.List;
 
+//Honor Pledge:
+//
+//I pledge that I have neither given nor 
+//received any help on this assignment.
+//
+//lmodi
+
 public class AdminViewController {
 	private FrontController frontController;
-	private GetAdminBrowseView getAdminBrowseView;
+	private AdminBrowseView adminBrowseView;
+	private ListProductsView listProductsView;
 	//default constructor
 	public AdminViewController(){
 		this.frontController = new FrontController();
-		this.getAdminBrowseView = new GetAdminBrowseView();
+		this.adminBrowseView = new AdminBrowseView();
+		this.listProductsView = new ListProductsView();
 	}
 	
 	
 	public void browseProducts(Session session) {
 		List<Item> productList = this.frontController.browseProducts(session);
-		BrowseProducts browseProducts = new BrowseProducts();
-		browseProducts.listProductList(productList);
-		int input = this.getAdminBrowseView.getInputFromUser();
+		this.listProductsView.listProductList(productList);
+		int input = this.adminBrowseView.getInputFromUser();
 		switch(input) {
 		case 1:
 			updateProduct(session);
@@ -28,10 +36,9 @@ public class AdminViewController {
 	}
 	
 	public void updateProduct(Session session) {
-		Item item = this.getAdminBrowseView.getProduct();
+		Item item = this.adminBrowseView.getProduct();
 		frontController.updateProduct(session, item);
 		System.out.println("\nUpdate Successful...\n");
 		browseProducts(session);
 	}
-
 }

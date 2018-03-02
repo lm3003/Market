@@ -2,6 +2,13 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+//Honor Pledge:
+//
+//I pledge that I have neither given nor 
+//received any help on this assignment.
+//
+//lmodi
+
 public class AuthorizationInvocationHandler implements InvocationHandler, Serializable{
 	private static final long serialVersionUID = 1L;
 	private Object objectImpl;

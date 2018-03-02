@@ -45,6 +45,17 @@ public class MarketClientController {
 		this.myMarket.updateProduct(session, item);
 	}
 	
+	//delegate action to update cart
+	public void saveProductToCart(Session session, int productId) {
+		this.myMarket.saveProductToCart(session, productId);
+	}
+	
+	
+	//delegate action to view shopping cart item
+	public List<Item> viewShoppingCartProducts(Session session){
+		return this.myMarket.viewShoppingCartProducts(session);
+	}
+	
 	
 	
 
