@@ -17,7 +17,7 @@ public class CustomerViewController{
 		this.customerBrowseView = new CustomerBrowseView();
 		this.listProductsView = new ListProductsView();
 	}
-	
+	// Ryan: Please include useful comments in each file.
 	public void browseProducts(Session session) {
 		List<Item> productList = this.frontController.browseProducts(session);
 		this.listProductsView.listProductList(productList);

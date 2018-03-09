@@ -16,6 +16,8 @@ public class ListProductsView{
 		
 	}
 	
+	// Ryan: Please include useful comments in each file.
+	
 	public void listProductList(List<Item> productList) {
 		Iterator<Item> iterator = productList.listIterator();
 		while(iterator.hasNext()) {

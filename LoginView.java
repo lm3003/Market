@@ -13,6 +13,8 @@ public class LoginView extends MarketView{
 //	default Constructor
 	public LoginView() {}
 	
+	// Ryan: Please include useful comments in each file.
+	
 	@Override
 	void implementView() {
 		performLogin();

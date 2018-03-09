@@ -21,7 +21,7 @@ public class User {
 		this.credentials = credentials;
 	}
 	
-	
+	// Ryan: This method could use some comments.
 	public Session authenticate() {
 		Session session = new Session();
     	if(this.credentials[0].equals("customer") && this.credentials[1].equals("customer")) {
