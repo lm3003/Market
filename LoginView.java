@@ -14,12 +14,14 @@ public class LoginView extends MarketView{
 	public LoginView() {}
 	
 	// Ryan: Please include useful comments in each file.
+	// Fixed: Added useful comments
 	
 	@Override
 	void implementView() {
 		performLogin();
 	}
 	
+	//Perform user authentication 
 	public void performLogin() {
 		String userName;
 		String password;

@@ -14,7 +14,10 @@ public class AdminBrowseView {
 	}
 	
 	// Ryan: Please include useful comments in each file.
+	// Fixed: Added useful comments
 	
+	
+	//Menu for Admin to do their functionalities
 	public int getInputFromUser() {
 		System.out.println("Please make your selection:");
 		System.out.println("1. Update an item");

@@ -19,6 +19,8 @@ public class MarketClientController {
 	}
 	
 	// Ryan: Does this class maintain high cohesion?
+	// Fixed: Yes, it separates out the Java RMI layer with the client subsystem. 
+	// Helps in delegating certain tasks as well as performing simple tasks such as catching exceptions.
 	
 	public String[] getCredentials() {
 		return this.credentials;

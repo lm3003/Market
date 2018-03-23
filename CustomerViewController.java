@@ -18,6 +18,9 @@ public class CustomerViewController{
 		this.listProductsView = new ListProductsView();
 	}
 	// Ryan: Please include useful comments in each file.
+	// Fixed: Added useful comments
+	
+	//page controller for customer view interacting with the front controller to send/recieve the required messages 
 	public void browseProducts(Session session) {
 		List<Item> productList = this.frontController.browseProducts(session);
 		this.listProductsView.listProductList(productList);
@@ -38,6 +41,7 @@ public class CustomerViewController{
 		}
 	}
 	
+	//saves products on cart
 	public void saveProductToCart(Session session) {
 		int productId = this.customerBrowseView.getProductId();
 		this.frontController.saveProductToCart(session, productId);
@@ -45,6 +49,8 @@ public class CustomerViewController{
 		viewShoppingCartProducts(session);
 	}
 	
+	
+	//View products already added to cart
 	public void viewShoppingCartProducts(Session session) {
 		List<Item> productList = this.frontController.viewShoppingCartProducts(session);
 		if(productList.isEmpty()) {

@@ -17,7 +17,9 @@ public class ListProductsView{
 	}
 	
 	// Ryan: Please include useful comments in each file.
+	// Fixed: Added useful comments
 	
+	//Page to view the item description
 	public void listProductList(List<Item> productList) {
 		Iterator<Item> iterator = productList.listIterator();
 		while(iterator.hasNext()) {

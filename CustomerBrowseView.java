@@ -9,11 +9,13 @@ import java.util.Scanner;
 
 public class CustomerBrowseView {
 	// Ryan: Please include useful comments in each file.
+	// Fixed: Added useful comments
 	Scanner scanner;
 	public CustomerBrowseView() {
 		
 	}
-
+	
+	//Customer browse menu list
 	public int getInputFromUser() {
 		System.out.println("Please make your selection:");
 		System.out.println("1. Add item to Cart");

@@ -14,41 +14,17 @@
 
 //Does nothing, For use in later assignments
 public class ShoppingCart {
-
+	private int id;
+	private int customerId;
+	private int item;
+	private int quantity;
+	private String user;
     /**
      * Default constructor
      */
     public ShoppingCart() {
     }
 
-    /**
-     * 
-     */
-    private String user;
-	
 	// Ryan: Should these members be publically visible?
-
-    /**
-     * 
-     */
-    int id;
-
-    /**
-     * 
-     */
-    int customerId;
-
-    /**
-     * 
-     */
-    int item;
-
-    /**
-     * 
-     */
-    int quantity;
-
-
-
-
+    // Fixed: No, but I haven't used this class yet. Member scope updated for use in the next assignments.
 }
