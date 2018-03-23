@@ -25,6 +25,8 @@ public class ShoppingCart {
      * 
      */
     private String user;
+	
+	// Ryan: Should these members be publically visible?
 
     /**
      * 

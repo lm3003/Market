@@ -13,6 +13,8 @@ public class AdminBrowseView {
 	public AdminBrowseView() {
 	}
 	
+	// Ryan: Please include useful comments in each file.
+	
 	public int getInputFromUser() {
 		System.out.println("Please make your selection:");
 		System.out.println("1. Update an item");

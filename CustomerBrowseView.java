@@ -8,6 +8,7 @@ import java.util.Scanner;
 //lmodi
 
 public class CustomerBrowseView {
+	// Ryan: Please include useful comments in each file.
 	Scanner scanner;
 	public CustomerBrowseView() {
 		

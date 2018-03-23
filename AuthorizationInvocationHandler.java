@@ -13,6 +13,8 @@ public class AuthorizationInvocationHandler implements InvocationHandler, Serial
 	private static final long serialVersionUID = 1L;
 	private Object objectImpl;
 	
+	// Ryan: Please include useful comments in each file.
+	
 	public AuthorizationInvocationHandler(Object objectImpl) {
 		this.objectImpl = objectImpl;
 	}

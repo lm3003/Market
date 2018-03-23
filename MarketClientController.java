@@ -18,6 +18,8 @@ public class MarketClientController {
 		this.myMarket = this.marketClient.getConnectionInstance();
 	}
 	
+	// Ryan: Does this class maintain high cohesion?
+	
 	public String[] getCredentials() {
 		return this.credentials;
 	}
