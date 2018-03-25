@@ -28,7 +28,7 @@ public class ListProductsView{
 			System.out.println("Item Number: " + item.getId());
 			System.out.println("Name: " + item.getName());
 			System.out.println("Description: " + item.getDescription());
-			System.out.println("Quantity in Stock: " + item.getQuantity());
+			System.out.println("Quantity: " + item.getQuantity());
 			System.out.println("Price per item: " + item.getPrice());
 			System.out.println();
 		}

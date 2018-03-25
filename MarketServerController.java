@@ -51,12 +51,17 @@ public class MarketServerController implements Serializable{
 		this.marketModel.updateProduct(item);
 	}
 	
-	public void saveProductToCart(int productId) {
-		this.marketModel.saveProductToCart(productId);
+	public boolean saveProductToCart(int[] productInfo) {
+		return this.marketModel.saveProductToCart(productInfo);
 	}
 	
-	public List<Item> viewShoppingCartProducts(Session session) {
-		return this.marketModel.viewShoppingCartProducts(session);
+	public List<Item> viewShoppingCartProducts() {
+		return this.marketModel.viewShoppingCartProducts();
+	}
+	
+	
+	public boolean purchaseItems() {
+		return this.marketModel.purchaseItems();
 	}
 	
 

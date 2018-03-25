@@ -50,14 +50,19 @@ public class MarketClientController {
 	}
 	
 	//delegate action to update cart
-	public void saveProductToCart(Session session, int productId) {
-		this.myMarket.saveProductToCart(session, productId);
+	public boolean saveProductToCart(Session session, int[] productInfo) {
+		return this.myMarket.saveProductToCart(session, productInfo);
 	}
 	
 	
 	//delegate action to view shopping cart item
 	public List<Item> viewShoppingCartProducts(Session session){
 		return this.myMarket.viewShoppingCartProducts(session);
+	}
+	
+	//delegate action to purchase items in shopping cart
+	public boolean purchaseItems(Session session) {
+		return this.myMarket.purchaseItems(session);
 	}
 	
 	

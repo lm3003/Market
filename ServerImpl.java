@@ -37,13 +37,18 @@ public class ServerImpl implements Market, Serializable{
 	}
 
 	@Override
-	public void saveProductToCart(Session session, int productId) {
-		this.marketServerController.saveProductToCart(productId);
+	public boolean saveProductToCart(Session session, int[] productInfo) {
+		return this.marketServerController.saveProductToCart(productInfo);
 	}
 
 	@Override
 	public List<Item> viewShoppingCartProducts(Session session) {
-		return this.marketServerController.viewShoppingCartProducts(session);
+		return this.marketServerController.viewShoppingCartProducts();
+	}
+	
+	@Override
+	public boolean purchaseItems(Session session) {
+		return this.marketServerController.purchaseItems();
 	}
 	
 	

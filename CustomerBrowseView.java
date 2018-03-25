@@ -19,8 +19,10 @@ public class CustomerBrowseView {
 	public int getInputFromUser() {
 		System.out.println("Please make your selection:");
 		System.out.println("1. Add item to Cart");
-		System.out.println("2. Purchase Item in Cart");
-		System.out.println("3. Exit");
+		System.out.println("2. Purchase Item in your Cart");
+		System.out.println("3. Browse Products");
+		System.out.println("4. View Products in your Cart");
+		System.err.println("5. Exit");
 		int input = Integer.parseInt(getInput());
 		return input;
 	}
@@ -31,9 +33,12 @@ public class CustomerBrowseView {
 		return input;
 	}
 	
-	public int getProductId() {
-		System.out.print("\nPlease enter the Id of the product you want to add to cart: ");
-		int id = Integer.parseInt(getInput());
-		return id;
+	public int[] getProductInfo() {
+		int[] productInfo = new int[2];
+		System.out.print("\nEnter the product Id you want to add to cart: ");
+		productInfo[0] = Integer.parseInt(getInput());
+		System.out.print("\nEnter the Quantity you want to add: ");
+		productInfo[1] = Integer.parseInt(getInput());
+		return productInfo;
 	}
 }

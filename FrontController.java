@@ -63,13 +63,18 @@ public class FrontController {
 	}
 	
 	//delegate action to update cart
-	public void saveProductToCart(Session session, int productId) {
-		this.marketClientController.saveProductToCart(session, productId);
+	public boolean saveProductToCart(Session session, int[] productInfo) {
+		return this.marketClientController.saveProductToCart(session, productInfo);
 	}
 	
 	//delegate action to view shopping cart item
 	public List<Item> viewShoppingCartProducts(Session session){
 		return this.marketClientController.viewShoppingCartProducts(session);
+	}
+	
+	//delegate action to purchase items in shopping cart
+	public boolean purchaseItems(Session session) {
+		return this.marketClientController.purchaseItems(session);
 	}
 
 }
