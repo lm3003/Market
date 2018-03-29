@@ -1,3 +1,4 @@
+import java.rmi.RemoteException;
 import java.util.List;
 
 //Honor Pledge:
@@ -21,25 +22,22 @@ public interface Market extends java.rmi.Remote{
 	 * @return Transaction ID
 	 * @throws java.rmi.RemoteException
 	 */
-	public Session authenticate(String[] credentials) throws java.rmi.RemoteException;
+	public Session authenticate(String[] credentials) throws RemoteException;
 	
-	public List<Item> browseProducts(Session session);
+	public List<Item> browseProducts(Session session) throws RemoteException;
 	
 //	@RequiresRole("customer")
 //	public void purchaseItems(Session session);
 	
-	@RequiresRole("admin")
-	public void updateProduct(Session session, Item item);
+//	@RequiresRole("admin")
+//	public void updateProduct(Session session, Item item);
 	
 	@RequiresRole("customer")
-	public boolean saveProductToCart(Session session, int[] productInfo);
+	public boolean saveProductToCart(Session session, int[] productInfo) throws RemoteException; 
 	
 	@RequiresRole("customer")
-	public List<Item> viewShoppingCartProducts(Session session);
+	public List<Item> viewShoppingCartProducts(Session session) throws RemoteException;
 	
 	@RequiresRole("customer")
-	public boolean purchaseItems(Session session);
-	
-	
-
+	public boolean purchaseItems(Session session) throws RemoteException;
 }

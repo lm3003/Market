@@ -31,8 +31,7 @@ public class FrontController {
 
 	//Get authentication result
 	public Session getUserSession(String[] credentials) {
-		setCredentials(credentials);
-		return marketClientController.authenticate(getCredentials());
+		return marketClientController.authenticate(credentials);
 	}
 	
 	public void setCredentials(String[] credentials) {
@@ -43,7 +42,6 @@ public class FrontController {
 	//Act on dispatcher as per authentication result
 	public void processAuthentication(String[] credentials) {
 		Session session = getUserSession(credentials);
-
 		if(session.isAuthenticated()) {
 			this.dispatcher = new Dispatcher(session);
 			this.dispatcher.dispatchView();
@@ -59,7 +57,7 @@ public class FrontController {
 	
 	//delegate update product action
 	public void updateProduct(Session session, Item item) {
-		this.marketClientController.updateProduct(session, item);
+//		this.marketClientController.updateProduct(session, item);
 	}
 	
 	//delegate action to update cart

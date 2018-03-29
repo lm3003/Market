@@ -1,7 +1,7 @@
 JCC = javac
 	
 compile:
-	$(JCC) *.java
+	$(JCC) -cp ".:mysql-connector.jar" *.java
 	
 clean:
 	$(RM) *.class

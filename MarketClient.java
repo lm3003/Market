@@ -19,30 +19,32 @@ import java.rmi.Naming;
  *
  */
 public class MarketClient {
-	private Market myMarket;
+	private Market market;
 	
 	//default constructor
 	public MarketClient() {
 	}
 	
-	public Market getConnectionInstance() {
-		connect();
-		return this.myMarket;
-	}
+//	public Market getConnectionInstance() {
+//		connect();
+//		return this.myMarket;
+//	}
 	
 	//connect to server controller to authentication
-	public void connect() {
+	public Market connect() {
 		// RMI Security Manager
 		System.setSecurityManager(new SecurityManager());
 		try{
-			String name = "//tesla.cs.iupui.edu:2096/oad/MarketServer";
+			String name = "//in-csci-rrpc01.cs.iupui.edu:2096/oad";
 			
 			// Attempt to locate the MarketServer...
-			this.myMarket = (Market) Naming.lookup(name);
+			this.market = (Market) Naming.lookup(name);
+			
 		} catch(Exception e){
 			System.out.println("MarketClient Exception: " +
 			e.getMessage());
 			e.printStackTrace();
-		}	
+		}
+		return this.market;
 	}
 }

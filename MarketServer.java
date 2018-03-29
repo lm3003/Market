@@ -1,8 +1,5 @@
-import java.io.Serializable;
 import java.lang.reflect.Proxy;
 import java.rmi.Naming;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
 //Honor Pledge:
 //
@@ -21,22 +18,22 @@ import java.rmi.server.UnicastRemoteObject;
  * interface. The variable 'name' must include the location where the
  * MarketServer is going to be registered with RMI to run.
  */
-public class MarketServer extends UnicastRemoteObject implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class MarketServer{
+	
 
-	public MarketServer() throws RemoteException{
+	public MarketServer(){
 		
 	}
 
 	public static void main(String[] args) {
-		// Set the RMI Security Manager...
+				// Set the RMI Security Manager...
 				System.setSecurityManager(new SecurityManager());
 				
 				try {
 					System.out.println("Creating a Market Server!");
 					
 					// Location of MarketServer
-					String name = "//tesla.cs.iupui.edu:2096/oad/MarketServer";
+					String name = "//in-csci-rrpc01.cs.iupui.edu:2096/oad";
 					
 					//AuthorizationInvocationHandler to check at method invocation  if session is authenticated to proceed
 					Market assignment = (Market) Proxy.newProxyInstance(Market.class.getClassLoader(), 

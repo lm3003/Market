@@ -8,10 +8,11 @@ Steps to execute:
 
 3. Start the RMI registry using command: % rmiregistry 2096& (where 2096 is the port that I've used for running my application)
 
-4. Start the server using the following command: % java -Djava.security.policy=policy MarketServer 
+4. Start the server using the following command: % java -cp ".:mysql-connector.jar" -Djava.security.policy=policy MarketServer 
 The server should be up and running now to accept client requests
 
-5. Run the client using the following command: % java -Djava.security.policy=policy ApplicationStartup
+5. Run the client using the following command: %  java -cp ".:mysql-connector.jar" -Djava.security.policy=policy ApplicationStartup
+
 Login view is displayed on the screen
 
 6. Try authenticating the user with the following username and passwords:

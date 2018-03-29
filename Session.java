@@ -1,3 +1,4 @@
+import java.io.Serializable;
 
 //Honor Pledge:
 //
@@ -6,7 +7,9 @@
 //
 //lmodi
 
-public class Session{
+public class Session implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private String roleType;
 	private String userName;
 	private boolean isAuthenticated;

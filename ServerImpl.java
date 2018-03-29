@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 //Honor Pledge:
@@ -9,47 +10,44 @@ import java.util.List;
 //
 //lmodi
 
-public class ServerImpl implements Market, Serializable{
+public class ServerImpl extends UnicastRemoteObject implements Market, Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private MarketServerController marketServerController;
-	public ServerImpl() throws RemoteException { 
+	public ServerImpl() throws RemoteException {
 		this.marketServerController = new MarketServerController();
 	}
 
 	@Override
-	public Session authenticate(String[] credentials) throws RemoteException {
+	public Session authenticate(String[] credentials) throws RemoteException{
 		return this.marketServerController.authenticate(credentials);
 	}
 
 	@Override
-	public List<Item> browseProducts(Session session) {
+	public List<Item> browseProducts(Session session) throws RemoteException{
 		return this.marketServerController.browseProducts();
 	}
-
-//	@Override
-//	public void purchaseItems(Session session) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
+	
 	@Override
-	public void updateProduct(Session session, Item item) {
-		this.marketServerController.updateProduct(item);		
-	}
-
-	@Override
-	public boolean saveProductToCart(Session session, int[] productInfo) {
+	public boolean saveProductToCart(Session session, int[] productInfo) throws RemoteException{
 		return this.marketServerController.saveProductToCart(productInfo);
 	}
 
 	@Override
-	public List<Item> viewShoppingCartProducts(Session session) {
+	public List<Item> viewShoppingCartProducts(Session session) throws RemoteException{
 		return this.marketServerController.viewShoppingCartProducts();
 	}
 	
 	@Override
-	public boolean purchaseItems(Session session) {
+	public boolean purchaseItems(Session session) throws RemoteException{
 		return this.marketServerController.purchaseItems();
 	}
+
+//	@Override
+//	public void updateProduct(Session session, Item item) {
+//		this.marketServerController.updateProduct(item);		
+//	}
+
 	
 	
 	

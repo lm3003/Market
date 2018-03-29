@@ -1,5 +1,4 @@
 import java.io.Serializable;
-import java.rmi.RemoteException;
 import java.util.List;
 
 //Honor Pledge:
@@ -15,7 +14,6 @@ public class MarketServerController implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String[] credentials;
 	private MarketModel marketModel;
-	
 	public MarketServerController() {
 		this.marketModel = new MarketModel();
 	}
@@ -31,16 +29,8 @@ public class MarketServerController implements Serializable{
 	/**
 	 * Implemented remote method from market interface.
 	 */
-	public Session authenticate(String[] credentials) throws RemoteException {
-		setCredentials(credentials);
-		//Creating user instance...
-		User user = new User();
-		user.setCredentials(this.credentials);
-		//Creating command
-		Authenticate authenticate = new Authenticate(user);
-		
-		//Intializing invoker
-		return this.marketModel.execute(authenticate);
+	public Session authenticate(String[] credentials) {
+		return this.marketModel.authenticate(credentials);
 	}
 	
 	public List<Item> browseProducts(){
@@ -48,7 +38,7 @@ public class MarketServerController implements Serializable{
 	}
 	
 	public void updateProduct(Item item) {
-		this.marketModel.updateProduct(item);
+//		MarketModel.getInstance().updateProduct(item);
 	}
 	
 	public boolean saveProductToCart(int[] productInfo) {
