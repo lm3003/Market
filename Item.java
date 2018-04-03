@@ -18,14 +18,14 @@ public class Item implements Serializable{
     private int id;
     private String name, description;
     private float price;
-    private String quantity;
+    private int quantity;
     
     //Default Constructor
     public Item() {
     }
     
     //constructor to initialize values
-    public Item(int id, String name, String description, String quantity, float price) {
+    public Item(int id, String name, String description, int quantity, float price) {
     	this.id = id;
     	this.name = name;
     	this.description = description;
@@ -65,11 +65,11 @@ public class Item implements Serializable{
 		this.price = price;
 	}
 
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 }

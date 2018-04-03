@@ -50,7 +50,4 @@ public class Session implements Serializable{
 	public void setAuthenticated(boolean isAuthenticated) {
 		this.isAuthenticated = isAuthenticated;
 	}
-	
-	
-	
 }

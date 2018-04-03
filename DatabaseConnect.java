@@ -63,11 +63,10 @@ public class DatabaseConnect implements Serializable{
 						while (rs.next())  
 						{
 							Item productItem = new Item();
-
 							productItem.setId(rs.getInt("id"));
 							productItem.setName(rs.getString("name")); 
 							productItem.setDescription(rs.getString("description")); 
-							productItem.setQuantity(Integer.toString(rs.getInt("quantity"))); 
+							productItem.setQuantity(rs.getInt("quantity")); 
 							productItem.setPrice(rs.getInt("price"));
 							catalog.add(productItem);
 						}

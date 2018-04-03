@@ -87,13 +87,13 @@ public class MarketModel implements Serializable{
     	for(Item item: this.productList) {
     		productMap.put(item.getId(), item);
     	}
-    	if(productInfo[0] < 1 || productInfo[0] > productMap.size() || !isNumeric(productMap.get(productInfo[0]).getQuantity()) || Integer.parseInt(productMap.get(productInfo[0]).getQuantity()) < productInfo[1])
+    	if(productInfo[0] < 1 || productInfo[0] > productMap.size() || productMap.get(productInfo[0]).getQuantity() < productInfo[1])
     		return false;
     	if(this.shoppingCartMap.containsKey(productInfo[0])) {
-    		this.shoppingCartMap.get(productInfo[0]).setQuantity(Integer.toString(productInfo[1]));
+    		this.shoppingCartMap.get(productInfo[0]).setQuantity(productInfo[1]);
     	}else {
     		Item item = productMap.get(productInfo[0]);
-    		Item shoppingCartItem = new Item(item.getId(), item.getName(), item.getDescription(), Integer.toString(productInfo[1]), item.getPrice());
+    		Item shoppingCartItem = new Item(item.getId(), item.getName(), item.getDescription(), productInfo[1], item.getPrice());
     		this.shoppingCartMap.put(productInfo[0], shoppingCartItem);
     	}
 		return true;
@@ -101,8 +101,6 @@ public class MarketModel implements Serializable{
     
     //purchase items from shopping cart
   	public boolean purchaseItems() {
-  		
-  		
   		Map<Integer,Item> productMap = new HashMap<>();
     	this.productList = browseProducts();
     	for(Item item: this.productList) {
@@ -112,12 +110,11 @@ public class MarketModel implements Serializable{
   			return false;
   		for(Item shoppingCartItem: this.shoppingCartMap.values()) {
   			Item productListItem = productMap.get(shoppingCartItem.getId());
-  			if(isNumeric(productListItem.getQuantity())) {
-  				int stock = Integer.parseInt(productListItem.getQuantity()) - Integer.parseInt(shoppingCartItem.getQuantity());
-  	  			productListItem.setQuantity(Integer.toString(stock));
-  			}else {
-  				return false;
-  			}
+			int stock = productListItem.getQuantity() - shoppingCartItem.getQuantity();
+			if(stock < 0)
+				return false;
+			else
+				productListItem.setQuantity(stock);
   		}
 		try {
 			Connection conn = this.db.dbConnect();
@@ -130,10 +127,4 @@ public class MarketModel implements Serializable{
   		this.shoppingCartMap.clear();
   		return true;
   	}
-    
-    //check if string is numeric value for quantity validation
-    private boolean isNumeric(String s) {
-    	return s != null && s.matches("[0-9]+");
-    }
-
 }

@@ -28,7 +28,10 @@ public class ListProductsView{
 			System.out.println("Item Number: " + item.getId());
 			System.out.println("Name: " + item.getName());
 			System.out.println("Description: " + item.getDescription());
-			System.out.println("Quantity: " + item.getQuantity());
+			if(item.getQuantity() <= 0)
+				System.out.println("Quantity: "+ "Out of Stock!! (You cannot buy this item right now)");
+			else
+				System.out.println("Quantity: " + item.getQuantity());
 			System.out.println("Price per item: " + item.getPrice());
 			System.out.println();
 		}

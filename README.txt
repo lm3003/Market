@@ -8,10 +8,10 @@ Steps to execute:
 
 3. Start the RMI registry using command: % rmiregistry 2096& (where 2096 is the port that I've used for running my application)
 
-4. Start the server using the following command: % java -cp ".:mysql-connector.jar" -Djava.security.policy=policy MarketServer 
+4. Server is setup on Machine01(in-csci-rrpc01.cs.iupui.edu). Start the server on machine01 using the following command: % java -cp ".:mysql-connector.jar" -Djava.security.policy=policy MarketServer 
 The server should be up and running now to accept client requests
 
-5. Run the client using the following command: %  java -cp ".:mysql-connector.jar" -Djava.security.policy=policy ApplicationStartup
+5. Run the clients (multiple clients from machine02 to machine05) using the following command: %  java -cp ".:mysql-connector.jar" -Djava.security.policy=policy ApplicationStartup
 
 Login view is displayed on the screen
 
@@ -26,7 +26,7 @@ You should see separate screens for both admin and customer
 
 7. Invalid authentication displays relavant message on client
 
-8. For customer facility to browse products and add to cart has been implemented. For admin, facility to browse products and update products has been implemented. Other options are dummy and might exit the program 
+8. For customer facility to browse products, add to cart has been implemented and purchase items have been implemented completely. 
 
 9. Once you have completed this work please remember to clean up by terminating the RMI Registry. You 
    can bring this process to the foreground through the following command:
