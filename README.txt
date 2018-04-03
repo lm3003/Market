@@ -22,6 +22,9 @@ password: admin
 - For Customer:
 userName: customer
 password: customer
+Database:
+username: lmodi
+password: lm3003
 You should see separate screens for both admin and customer
 
 7. Invalid authentication displays relavant message on client
