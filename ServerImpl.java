@@ -11,6 +11,7 @@ import java.util.List;
 //lmodi
 
 public class ServerImpl extends UnicastRemoteObject implements Market, Serializable{
+	// Ryan: Please include useful comments in each class.
 	
 	private static final long serialVersionUID = 1L;
 	private MarketServerController marketServerController;

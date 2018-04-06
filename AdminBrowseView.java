@@ -8,6 +8,7 @@ import java.util.Scanner;
 //lmodi
 
 public class AdminBrowseView {
+	// Ryan: Should this have a scope associated with it?
 	Scanner scanner;	
 	//default constructor
 	public AdminBrowseView() {

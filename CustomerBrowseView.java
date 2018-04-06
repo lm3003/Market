@@ -10,6 +10,8 @@ import java.util.Scanner;
 public class CustomerBrowseView {
 	// Ryan: Please include useful comments in each file.
 	// Fixed: Added useful comments
+	
+	// Ryan: Should this have a scope associated with it?
 	Scanner scanner;
 	public CustomerBrowseView() {
 		
