@@ -12,7 +12,9 @@ public class CustomerBrowseView {
 	// Fixed: Added useful comments
 	
 	// Ryan: Should this have a scope associated with it?
-	Scanner scanner;
+	// Fixed: I set it to default scope, however it can be set to private as it is not used beyond this class 
+	
+	private Scanner scanner;
 	public CustomerBrowseView() {
 		
 	}
