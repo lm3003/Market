@@ -35,24 +35,66 @@ public class MarketModel implements Serializable{
 		this.db = new DatabaseConnect();
 	}
 	
-    public Session authenticate(String[] credentials) {
+	//register user
+	public synchronized boolean registerUser(User newUser) {
+		List<User> newUserList = new ArrayList<>();
+		newUserList.add(newUser);
+		try {
+    		Connection conn = this.db.dbConnect();
+    		this.db.addUsers(conn, newUserList);
+    		conn.close();
+    		return true;
+    	}catch(SQLException e) {
+	  		e.printStackTrace();
+	  	}
+    	return false;
+	}
+	
+    public synchronized Session authenticate(User registeredUser) {
     	Session session = new Session();
-    	if(credentials[0].equals("customer") && credentials[1].equals("customer")) { // validating customer credentials
-    		session.setRoleType("Customer");
-    		session.setUserName(credentials[0]);									//If auth accepted, setup valid session values
-    		session.setAuthenticated(true);
-    		
-    	}else if(credentials[0].equals("admin") && credentials[1].equals("admin")) { // validating admin credentials
-    		session.setRoleType("Admin");
-    		session.setUserName(credentials[0]);									//If auth accepted, setup valid session values
-    		session.setAuthenticated(true);
+    	String[] user = null;
+    	try {
+    		Connection conn = this.db.dbConnect();
+    		user = this.db.getUser(conn, registeredUser.getUsername(), registeredUser.getPassword());
+    		conn.close();
+    	}catch(SQLException ex) {
+    		ex.printStackTrace();
+    	}
+    	if(user != null) { // validating customer credentials
+    		session.setUserName(user[0]);									//If auth accepted, setup valid session valuess
+    		session.setRoleType(user[1]);
+    		session.setAuthenticated(Boolean.parseBoolean(user[2]));	
     	}else {
     		session.setRoleType("Invalid");
-    		session.setUserName(credentials[0]);									//If auth denied, setup invalid session values
+    		session.setUserName(null);									//If auth denied, setup invalid session values
     		session.setAuthenticated(false);
     	}
     	return session;
     }
+    
+    public boolean addUsers(List<User> addUserList) {
+    	try {
+    		Connection conn = this.db.dbConnect();
+    		this.db.addUsers(conn, addUserList);
+    		conn.close();
+    		return true;
+    	}catch(SQLException e) {
+	  		e.printStackTrace();
+	  	}
+    	return false;
+	}
+
+	public boolean deleteUsers(List<User> deleteUserList) {
+		try {
+    		Connection conn = this.db.dbConnect();
+    		this.db.deleteUsers(conn, deleteUserList);
+    		conn.close();
+    		return true;
+    	}catch(SQLException e) {
+	  		e.printStackTrace();
+	  	}
+    	return false;
+	}
     
     //method to browse products
     public List<Item> browseProducts(){
@@ -75,9 +117,30 @@ public class MarketModel implements Serializable{
 		return this.shoppingCartList;
 	}
     
+    //add new products
+    public boolean addProducts(List<Item> addProductList) {
+    	try {
+    		Connection conn = this.db.dbConnect();
+    		this.db.addProducts(conn, addProductList);
+    		conn.close();
+    		return true;
+    	}catch(SQLException e) {
+	  		e.printStackTrace();
+	  	}
+    	return false;
+    }
+    
     //update products
-    public void updateProduct(List<Item> item) {
-    	
+    public boolean updateProducts(List<Item> updateProductList) {
+    	try {
+    		Connection conn = this.db.dbConnect();
+    		this.db.updateProducts(conn, updateProductList);
+    		conn.close();
+    		return true;
+    	}catch(SQLException e) {
+	  		e.printStackTrace();
+	  	}
+    	return false;
     }
     
     //add to cart
@@ -126,5 +189,18 @@ public class MarketModel implements Serializable{
   		
   		this.shoppingCartMap.clear();
   		return true;
+  	}
+  	
+  	//delete product
+  	public boolean deleteProducts(List<Integer> deleteProductIdList) {
+  		try {
+  			Connection conn = this.db.dbConnect();
+  			this.db.deleteProduct(conn, deleteProductIdList);
+  			conn.close();
+  			return true;
+  		}catch(SQLException e) {
+	  		e.printStackTrace();
+	  	}
+  		return false;
   	}
 }

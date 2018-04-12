@@ -9,6 +9,7 @@ import java.util.List;
 //lmodi
 
 //Market side controller
+//delegating requests to marketmodel
 public class MarketServerController implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -25,20 +26,37 @@ public class MarketServerController implements Serializable{
 	public void setCredentials(String[] credentials) {
 		this.credentials = credentials;
 	}
+	
+	//method to delegate registering user action
+	public boolean registerUser(User newUser) {
+		return this.marketModel.registerUser(newUser);
+	}
 
 	/**
 	 * Implemented remote method from market interface.
 	 */
-	public Session authenticate(String[] credentials) {
-		return this.marketModel.authenticate(credentials);
+	public Session authenticate(User registeredUser) {
+		return this.marketModel.authenticate(registeredUser);
+	}
+	
+	public boolean addUsers(List<User> addUserList) {
+		return this.marketModel.addUsers(addUserList);
+	}
+
+	public boolean deleteUsers(List<User> deleteUserList) {
+		return this.marketModel.deleteUsers(deleteUserList);
 	}
 	
 	public List<Item> browseProducts(){
 		return this.marketModel.browseProducts();
 	}
 	
-	public void updateProduct(Item item) {
-//		MarketModel.getInstance().updateProduct(item);
+	public boolean addProducts(List<Item> addProductList) {
+		return this.marketModel.addProducts(addProductList);
+	}
+	
+	public boolean updateProducts(List<Item> updateProductList) {
+		return this.marketModel.updateProducts(updateProductList);
 	}
 	
 	public boolean saveProductToCart(int[] productInfo) {
@@ -54,5 +72,7 @@ public class MarketServerController implements Serializable{
 		return this.marketModel.purchaseItems();
 	}
 	
-
+	public boolean deleteProducts(List<Integer> deleteProductIdList) {
+		return this.marketModel.deleteProducts(deleteProductIdList);
+	}
 }
