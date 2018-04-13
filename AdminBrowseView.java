@@ -51,12 +51,7 @@ public class AdminBrowseView {
 		String input = "y";
 		List<User> addUserList = new ArrayList<>();
 		while(input.equalsIgnoreCase("y")) {
-			User user = new User();
-			String[] getNewUserDetail = getNewUserDetail();
-			user.setUsername(getNewUserDetail[0]);
-			user.setPassword(getNewUserDetail[1]);
-			user.setRoleType(getNewUserDetail[2]);
-			user.setAuthenticated(Integer.parseInt(getNewUserDetail[3]));
+			User user = getNewUserDetail();
 			addUserList.add(user);
 			System.out.print("\n Add more users? Please enter 'y' or 'n': ");
 			input = getInput();
@@ -69,9 +64,7 @@ public class AdminBrowseView {
 		String input = "y";
 		List<User> deleteUserList = new ArrayList<>();
 		while(input.equalsIgnoreCase("y")) {
-			User user = new User();
-			String[] getNewUserDetail = getDeleteUserDetail();
-			user.setUsername(getNewUserDetail[0]);
+			User user = getDeleteUserDetail();;
 			deleteUserList.add(user);
 			System.out.print("\n Delete more users? Please enter 'y' or 'n': ");
 			input = getInput();
@@ -84,12 +77,7 @@ public class AdminBrowseView {
 		String input = "y";
 		List<Item> addProductList = new ArrayList<>();
 		while(input.equalsIgnoreCase("y")) {
-			Item item = new Item();
-			String[] getNewProductDetail = getNewProductDetail();
-			item.setName(getNewProductDetail[0]);
-			item.setDescription(getNewProductDetail[1]);
-			item.setQuantity(Integer.parseInt(getNewProductDetail[2]));
-			item.setPrice(Float.parseFloat(getNewProductDetail[3]));
+			Item item = getNewProductDetail();
 			addProductList.add(item);
 			System.out.print("\n Add more products? Please enter 'y' or 'n': ");
 			input = getInput();
@@ -106,13 +94,8 @@ public class AdminBrowseView {
 		while(input.equalsIgnoreCase("y")) {
 			System.out.print("\nPlease enter the Id of the product you want to update: ");
 			int id = Integer.parseInt(getInput());
-			Item item = new Item();
+			Item item = getNewProductDetail();;
 			item.setId(id);
-			String[] getNewProductDetail = getNewProductDetail();
-			item.setName(getNewProductDetail[0]);
-			item.setDescription(getNewProductDetail[1]);
-			item.setQuantity(Integer.parseInt(getNewProductDetail[2]));
-			item.setPrice(Float.parseFloat(getNewProductDetail[3]));
 			updateProductList.add(item);
 			System.out.print("\n Update more products? Please enter 'y' or 'n': ");
 			input = getInput();
@@ -136,49 +119,42 @@ public class AdminBrowseView {
 	}
 	
 	
-	private String[] getNewProductDetail() {
-		String[] productInfo = new String[4];
+	private Item getNewProductDetail() {
+		Item item = new Item();
 		System.out.print("\nPlease enter the name of the product: ");
-		productInfo[0] = getInput();
+		item.setName(getInput());
 		System.out.print("\nPlease enter the description of the product:");
-		productInfo[1] = getInput();
+		item.setDescription(getInput());
 		System.out.print("\nPlease enter the quantity of the product:");
-		productInfo[2] = getInput();
+		item.setQuantity(Integer.parseInt(getInput()));
 		System.out.print("\nPlease enter the price of the product:");
-		productInfo[3] = getInput();
-		return productInfo;
+		item.setPrice(Float.parseFloat(getInput()));
+		return item;
 	}
 	
-	private String[] getNewUserDetail() {
-		String[] userInfo = new String[4];
+	private User getNewUserDetail() {
+		User user = new User();
+		System.out.print("\nFirst Name: ");
+		user.setFirstname(getInput());
+		System.out.print("\nLast Name: ");
+		user.setLastname(getInput());
 		System.out.print("\nusername: ");
-		userInfo[0] = getInput();
+		user.setUsername(getInput());
 		System.out.print("\npassword: ");
-		userInfo[1] = getInput();
+		user.setPassword(getInput());
 		System.out.print("\nRoletype (customer or admin): ");
-		userInfo[2] = getInput();
-		if(!userInfo[2].equalsIgnoreCase("customer") && !userInfo[2].equalsIgnoreCase("admin")) {
+		user.setRoleType(getInput());
+		if(!user.getRoleType().equalsIgnoreCase("customer") && !user.getRoleType().equalsIgnoreCase("admin")) {
 			System.out.println("Invalid input. Exiting system...");
 			System.exit(0);
 		}
-		System.out.print("\nisAuthenticated (true or false): ");
-		userInfo[3] = getInput();
-		if(!userInfo[3].equalsIgnoreCase("true") && !userInfo[3].equalsIgnoreCase("False")) {
-			System.out.println("Invalid input. Exiting system...");
-			System.exit(0);
-		}else {
-			if(userInfo[3].equalsIgnoreCase("true"))
-				userInfo[3] = "1";
-			else
-				userInfo[3] = "0";
-		}
-		return userInfo;
+		return user;
 	}
 	
-	private String[] getDeleteUserDetail() {
-		String[] userInfo = new String[1];
+	private User getDeleteUserDetail() {
+		User user = new User();
 		System.out.print("\nusername: ");
-		userInfo[0] = getInput();
-		return userInfo;
+		user.setUsername(getInput());
+		return user;
 	}
 }

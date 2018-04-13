@@ -2,9 +2,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 // Ryan: Are you using all classes in the util package, if not please only include those you are.
 // Fixed: Fixed as requested
@@ -25,13 +23,9 @@ import java.util.Map;
 //Acts as an invoker for command pattern
 public class MarketModel implements Serializable{
 	private List<Item> productList;
-	private Map<Integer,Item> shoppingCartMap;
-	private List<Item> shoppingCartList;
 	private DatabaseConnect db;
 	private static final long serialVersionUID = 1L;
 	public MarketModel(){
-		this.shoppingCartList = new ArrayList<>();
-		this.shoppingCartMap = new HashMap<>();
 		this.db = new DatabaseConnect();
 	}
 	
@@ -63,7 +57,7 @@ public class MarketModel implements Serializable{
     	if(user != null) { // validating customer credentials
     		session.setUserName(user[0]);									//If auth accepted, setup valid session valuess
     		session.setRoleType(user[1]);
-    		session.setAuthenticated(Boolean.parseBoolean(user[2]));	
+    		session.setAuthenticated(true);	
     	}else {
     		session.setRoleType("Invalid");
     		session.setUserName(null);									//If auth denied, setup invalid session values
@@ -109,12 +103,16 @@ public class MarketModel implements Serializable{
     }
     
     //send the shopping cart list
-    public List<Item> viewShoppingCartProducts() {
-    	this.shoppingCartList.clear();
-    	for(Item item: this.shoppingCartMap.values()) {
-    		this.shoppingCartList.add(item);
-    	}
-		return this.shoppingCartList;
+    public List<Item> viewShoppingCartProducts(String username) {
+    	List<Item> shoppingCartProductList = null;
+    	try {
+    		Connection conn = this.db.dbConnect();
+    		shoppingCartProductList = this.db.getShoppingCartProducts(conn, username);
+    		conn.close();
+    	}catch(SQLException e) {
+	  		e.printStackTrace();
+	  	}
+    	return shoppingCartProductList;
 	}
     
     //add new products
@@ -144,51 +142,37 @@ public class MarketModel implements Serializable{
     }
     
     //add to cart
-    public boolean saveProductToCart(int[] productInfo) {
-    	Map<Integer,Item> productMap = new HashMap<>();
-    	this.productList = browseProducts();
-    	for(Item item: this.productList) {
-    		productMap.put(item.getId(), item);
-    	}
-    	if(productInfo[0] < 1 || productInfo[0] > productMap.size() || productMap.get(productInfo[0]).getQuantity() < productInfo[1])
-    		return false;
-    	if(this.shoppingCartMap.containsKey(productInfo[0])) {
-    		this.shoppingCartMap.get(productInfo[0]).setQuantity(productInfo[1]);
-    	}else {
-    		Item item = productMap.get(productInfo[0]);
-    		Item shoppingCartItem = new Item(item.getId(), item.getName(), item.getDescription(), productInfo[1], item.getPrice());
-    		this.shoppingCartMap.put(productInfo[0], shoppingCartItem);
-    	}
-		return true;
+    public boolean saveProductToCart(String username, int[] productInfo) {
+    	try {
+    		Connection conn = this.db.dbConnect();
+    		int quantityInStock = this.db.getProductQuantity(conn, productInfo[0]);
+    		if(quantityInStock != -1 && quantityInStock - productInfo[1] >= 0) {
+    			this.db.saveProductToCart(conn, username, productInfo);
+    		}else {
+    			conn.close();
+    			return false;
+    		}
+    		conn.close();
+    		return true;
+    	}catch(SQLException e) {
+	  		e.printStackTrace();
+	  	}
+    	return false;
+
 	}
     
     //purchase items from shopping cart
-  	public boolean purchaseItems() {
-  		Map<Integer,Item> productMap = new HashMap<>();
-    	this.productList = browseProducts();
-    	for(Item item: this.productList) {
-    		productMap.put(item.getId(), item);
-    	}
-  		if(this.shoppingCartMap.isEmpty())
-  			return false;
-  		for(Item shoppingCartItem: this.shoppingCartMap.values()) {
-  			Item productListItem = productMap.get(shoppingCartItem.getId());
-			int stock = productListItem.getQuantity() - shoppingCartItem.getQuantity();
-			if(stock < 0)
-				return false;
-			else
-				productListItem.setQuantity(stock);
-  		}
-		try {
-			Connection conn = this.db.dbConnect();
-			this.db.updateProducts(conn, this.productList);
-			conn.close();
-		}catch(SQLException e) {
-		  		e.printStackTrace();
-		  	}
-  		
-  		this.shoppingCartMap.clear();
-  		return true;
+  	public boolean purchaseItems(String username) {
+  		List<Item> shoppingCartProductList = viewShoppingCartProducts(username);
+  		try {
+  			Connection conn = this.db.dbConnect();
+  			this.db.stockUpdate(conn, username, shoppingCartProductList);
+  			conn.close();
+  			return true;
+  		}catch(SQLException e) {
+	  		e.printStackTrace();
+	  	}
+  		return false;
   	}
   	
   	//delete product

@@ -43,9 +43,8 @@ public class LoginView extends MarketView{
 	
 	//perform user signin
 	public void performSignup() {
-		User newUser = getUserCredentials();
+		User newUser = getNewUserDetails();
 		newUser.setRoleType("customer");
-		newUser.setAuthenticated(1);
 		boolean isRegistered = this.frontController.registerUser(newUser);
 		if(isRegistered) {
 			System.out.println("User registered successfully!!");
@@ -57,21 +56,37 @@ public class LoginView extends MarketView{
 	}
 	
 	//return user credentials
-	private User getUserCredentials() {
+	private User getNewUserDetails() {
 		User user = new User();
+		System.out.print("\nPlease enter a First Name: ");
+		user.setFirstname(scanner.next());
+		System.out.print("\nPlease enter a Last Name: ");
+		user.setLastname(scanner.next());
 		System.out.print("\nPlease enter a username: ");
 		user.setUsername(scanner.next());
-		System.out.println("\nPlease enter a password: ");
+		System.out.print("\nPlease enter a password: ");
 		user.setPassword(scanner.next());
 		return user;
 	}
 	
+	//return registered user details
+		private User getRegisteredUserDetails() {
+			User user = new User();
+			System.out.print("\nPlease enter a username: ");
+			user.setUsername(scanner.next());
+			System.out.print("\nPlease enter a password: ");
+			user.setPassword(scanner.next());
+			return user;
+		}
+	
 	//Perform user authentication 
 	public void performSignin() {
 		System.out.println("\nPlease enter your Username and Password to sign in.");
-		User registeredUser = getUserCredentials();
+		User registeredUser = getRegisteredUserDetails();
 		//Invalid user view or customer view or admin view
-		frontController.processAuthentication(registeredUser);
+		boolean isAuthenticated = frontController.processAuthentication(registeredUser);
+		if(!isAuthenticated)
+			welcomePage();
 		scanner.close();
 		System.exit(0);
 	}

@@ -47,19 +47,19 @@ public class ServerImpl extends UnicastRemoteObject implements Market, Serializa
 	// delegating action to fetch saved products in cart
 	@Override
 	public boolean saveProductToCart(Session session, int[] productInfo) throws RemoteException {
-		return this.marketServerController.saveProductToCart(productInfo);
+		return this.marketServerController.saveProductToCart(session.getUserName(), productInfo);
 	}
 
 	// delegating action to view shopping cart products
 	@Override
 	public List<Item> viewShoppingCartProducts(Session session) throws RemoteException {
-		return this.marketServerController.viewShoppingCartProducts();
+		return this.marketServerController.viewShoppingCartProducts(session.getUserName());
 	}
 	
 	// delegating action to purchase items in shopping cart
 	@Override
 	public boolean purchaseItems(Session session) throws RemoteException {
-		return this.marketServerController.purchaseItems();
+		return this.marketServerController.purchaseItems(session.getUserName());
 	}
 
 	@Override

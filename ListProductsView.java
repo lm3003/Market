@@ -25,7 +25,7 @@ public class ListProductsView{
 		while(iterator.hasNext()) {
 			Item item = (Item) iterator.next();
 			System.out.println();
-			System.out.println("Item Number: " + item.getId());
+			System.out.println("Item id: " + item.getId());
 			System.out.println("Name: " + item.getName());
 			System.out.println("Description: " + item.getDescription());
 			if(item.getQuantity() <= 0)

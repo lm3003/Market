@@ -21,7 +21,7 @@ public class FrontController {
 	
 	//Return the invalid view to user
 	public void invalidView() {
-		System.out.println("Username or Password is invalid");
+		System.out.println("Username or Password is invalid! \nIf you haven't registered yet, please Signup with us...");
 	}
 	//get credentials
 	public String[] getCredentials() {
@@ -55,13 +55,15 @@ public class FrontController {
 
 
 	//Act on dispatcher as per authentication result
-	public void processAuthentication(User registeredUser) {
+	public boolean processAuthentication(User registeredUser) {
 		Session session = getUserSession(registeredUser);
 		if(session.isAuthenticated()) {
 			this.dispatcher = new Dispatcher(session);
 			this.dispatcher.dispatchView();
+			return true;
 		}else {
 			invalidView();
+			return false;
 		}
 	}
 	
