@@ -46,6 +46,7 @@ public class AdminViewController {
 		}
 	}
 	
+	//manage admin and customer account
 	public void manageAdminAndCustomerAccounts(Session session) {
 		int input = this.adminBrowseView.getAdminCustomerAccountInput();
 		switch(input) {
@@ -72,6 +73,7 @@ public class AdminViewController {
 		browseProducts(session);
 	}
 	
+	//add products to inventory
 	public void addProducts(Session session) {
 		List<Item> addProductList = this.adminBrowseView.getAddProductList();
 		boolean isAdded = this.frontController.addProducts(session, addProductList);
@@ -82,6 +84,7 @@ public class AdminViewController {
 		browseProducts(session);
 	}
 	
+	//update product in inventory
 	public void updateProducts(Session session) {
 		List<Item> updateProductList = this.adminBrowseView.getUpdateProductList();
 		boolean isUpdated = frontController.updateProducts(session, updateProductList);
@@ -92,6 +95,8 @@ public class AdminViewController {
 		browseProducts(session);
 	}
 	
+	
+	//delete product from inventory
 	public void deleteProducts(Session session) {
 		List<Integer> deleteProductIdList= this.adminBrowseView.getDeleteProductIdList();
 		boolean isDeleted = this.frontController.deleteProducts(session, deleteProductIdList);

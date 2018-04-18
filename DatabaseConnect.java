@@ -204,6 +204,7 @@ public class DatabaseConnect implements Serializable{
 		}
 	}
 	
+	//get product quantity
 	public int getProductQuantity(Connection conn, int itemId) {
 		int quantity = 0;
 		if(conn != null) 
@@ -242,6 +243,7 @@ public class DatabaseConnect implements Serializable{
 		return quantity;
 	}
 
+	//add products to inventory
 	public void addProducts(Connection conn, List<Item> catalog){
 		if(conn != null) 
 		{
@@ -276,6 +278,7 @@ public class DatabaseConnect implements Serializable{
 		}
 	}
 
+	//update products in inventory
 	public void updateProducts(Connection conn, List<Item> catalog){
 		if(conn != null) 
 		{
@@ -311,6 +314,7 @@ public class DatabaseConnect implements Serializable{
 
 	}
 
+	//delete products from inventory
 	public void deleteProduct(Connection conn, List<Integer> deleteProductIdList){
 		if(conn != null) 
 		{
@@ -342,6 +346,7 @@ public class DatabaseConnect implements Serializable{
 
 	}
 	
+	//get user details
 	public String[] getUser(Connection conn, String username, String password){
 		String[] user = new String[2];
 		if(conn != null) 
@@ -384,6 +389,7 @@ public class DatabaseConnect implements Serializable{
 		return user;
 	}
 	
+	//add users to user table
 	public void addUsers(Connection conn, List<User> addUserList){
 		if(conn != null) 
 		{
@@ -419,6 +425,7 @@ public class DatabaseConnect implements Serializable{
 		}
 	}
 	
+	//delete users from the user table
 	public void deleteUsers(Connection conn, List<User> deleteUserList){
 		if(conn != null) 
 		{

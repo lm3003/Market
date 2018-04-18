@@ -1,5 +1,10 @@
 import java.io.Serializable;
-
+//Honor Pledge:
+//
+//I pledge that I have neither given nor 
+//received any help on this assignment.
+//
+//lmodi
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -10,10 +15,12 @@ public class User implements Serializable {
 	private String roleType;
 	private int isAuthenticated;
 	
+	//No arg constructor
 	public User() {
 		
 	}
 	
+	//Const with arg
 	public User(String firstname, String lastname, String username, String password, String roleType, int isAuthenticated) {
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -23,6 +30,7 @@ public class User implements Serializable {
 		this.isAuthenticated = isAuthenticated;
 	}
 
+	//Getters and setters for this class below...
 	public String getFirstname() {
 		return firstname;
 	}

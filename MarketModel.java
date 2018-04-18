@@ -44,6 +44,7 @@ public class MarketModel implements Serializable{
     	return false;
 	}
 	
+	//authenticate user using this method
     public synchronized Session authenticate(User registeredUser) {
     	Session session = new Session();
     	String[] user = null;
@@ -66,7 +67,8 @@ public class MarketModel implements Serializable{
     	return session;
     }
     
-    public boolean addUsers(List<User> addUserList) {
+    //add users using this method
+    public synchronized boolean addUsers(List<User> addUserList) {
     	try {
     		Connection conn = this.db.dbConnect();
     		this.db.addUsers(conn, addUserList);
@@ -78,7 +80,8 @@ public class MarketModel implements Serializable{
     	return false;
 	}
 
-	public boolean deleteUsers(List<User> deleteUserList) {
+    //deleteUsers using this method
+	public synchronized boolean deleteUsers(List<User> deleteUserList) {
 		try {
     		Connection conn = this.db.dbConnect();
     		this.db.deleteUsers(conn, deleteUserList);
@@ -91,7 +94,7 @@ public class MarketModel implements Serializable{
 	}
     
     //method to browse products
-    public List<Item> browseProducts(){
+    public synchronized List<Item> browseProducts(){
     	try {
     		Connection conn = this.db.dbConnect();
         	this.productList = this.db.readProducts(conn);
@@ -103,7 +106,7 @@ public class MarketModel implements Serializable{
     }
     
     //send the shopping cart list
-    public List<Item> viewShoppingCartProducts(String username) {
+    public synchronized List<Item> viewShoppingCartProducts(String username) {
     	List<Item> shoppingCartProductList = null;
     	try {
     		Connection conn = this.db.dbConnect();
@@ -116,7 +119,7 @@ public class MarketModel implements Serializable{
 	}
     
     //add new products
-    public boolean addProducts(List<Item> addProductList) {
+    public synchronized boolean addProducts(List<Item> addProductList) {
     	try {
     		Connection conn = this.db.dbConnect();
     		this.db.addProducts(conn, addProductList);
@@ -129,7 +132,7 @@ public class MarketModel implements Serializable{
     }
     
     //update products
-    public boolean updateProducts(List<Item> updateProductList) {
+    public synchronized boolean updateProducts(List<Item> updateProductList) {
     	try {
     		Connection conn = this.db.dbConnect();
     		this.db.updateProducts(conn, updateProductList);
@@ -142,7 +145,7 @@ public class MarketModel implements Serializable{
     }
     
     //add to cart
-    public boolean saveProductToCart(String username, int[] productInfo) {
+    public synchronized boolean saveProductToCart(String username, int[] productInfo) {
     	try {
     		Connection conn = this.db.dbConnect();
     		int quantityInStock = this.db.getProductQuantity(conn, productInfo[0]);
@@ -162,7 +165,7 @@ public class MarketModel implements Serializable{
 	}
     
     //purchase items from shopping cart
-  	public boolean purchaseItems(String username) {
+  	public synchronized boolean purchaseItems(String username) {
   		List<Item> shoppingCartProductList = viewShoppingCartProducts(username);
   		try {
   			Connection conn = this.db.dbConnect();
@@ -176,7 +179,7 @@ public class MarketModel implements Serializable{
   	}
   	
   	//delete product
-  	public boolean deleteProducts(List<Integer> deleteProductIdList) {
+  	public synchronized boolean deleteProducts(List<Integer> deleteProductIdList) {
   		try {
   			Connection conn = this.db.dbConnect();
   			this.db.deleteProduct(conn, deleteProductIdList);

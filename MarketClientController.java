@@ -66,6 +66,7 @@ public class MarketClientController {
 		return isDeleted; 
 	}
 	
+	//browse product action
 	public List<Item> browseProducts(Session session) {
 		List<Item> browseProducts = null;
 		try {
@@ -76,6 +77,7 @@ public class MarketClientController {
 		return browseProducts;
 	}
 	
+	//add product action
 	public boolean addProducts(Session session, List<Item> addProductList) {
 		boolean isAdded = false;
 		try {
@@ -86,6 +88,7 @@ public class MarketClientController {
 		return isAdded;
 	}
 	
+	//upate product action
 	public boolean updateProducts(Session session, List<Item> updateProductList) {
 		boolean isUpdated = false;
 		try {

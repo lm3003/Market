@@ -9,7 +9,8 @@ import java.util.List;
 //lmodi
 
 //Market side controller
-//delegating requests to marketmodel
+
+//delegating requests to marketmodel ...
 public class MarketServerController implements Serializable{
 
 	private static final long serialVersionUID = 1L;

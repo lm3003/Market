@@ -29,6 +29,7 @@ public class CustomerViewController{
 		implementUserSelection(session, input);
 	}
 	
+	//implement the customer user selection here
 	private void implementUserSelection(Session session,int input) {
 		switch(input) {
 		case 1:

@@ -31,12 +31,14 @@ public class CustomerBrowseView {
 		return input;
 	}
 	
+	//get input method for any method in this class
 	private String getInput() {
 		this.scanner = new Scanner(System.in);
 		String input = scanner.next();
 		return input;
 	}
 	
+	//get product info to add to cart
 	public int[] getProductInfo() {
 		int[] productInfo = new int[2];
 		System.out.print("\nEnter the product Id you want to add to cart: ");

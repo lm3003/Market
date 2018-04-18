@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 //
 //lmodi
 
-
+//Interface to implement RBAC
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequiresRole {

@@ -33,6 +33,7 @@ public class Item implements Serializable{
     	this.price = price;
     }
     
+    //getter & setters for this class below
     public int getId() {
 		return id;
 	}

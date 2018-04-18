@@ -61,22 +61,26 @@ public class ServerImpl extends UnicastRemoteObject implements Market, Serializa
 	public boolean purchaseItems(Session session) throws RemoteException {
 		return this.marketServerController.purchaseItems(session.getUserName());
 	}
-
+	
+	//delegating action to update item
 	@Override
 	public boolean updateProducts(Session session, List<Item> updateProductList) throws RemoteException {
 		return this.marketServerController.updateProducts(updateProductList);		
 	}
 	
+	//delegating action to delete product
 	@Override
 	public boolean deleteProducts(Session session, List<Integer> deleteProductIdList) throws RemoteException {
 		return this.marketServerController.deleteProducts(deleteProductIdList);
 	}
 
+	//delegating action to add user
 	@Override
 	public boolean addUsers(Session session, List<User> addUserList) throws RemoteException {
 		return this.marketServerController.addUsers(addUserList);
 	}
 
+	//delegating action to delete users
 	@Override
 	public boolean deleteUsers(Session session, List<User> deleteUserList) throws RemoteException {
 		return this.marketServerController.deleteUsers(deleteUserList);

@@ -27,6 +27,7 @@ public class Session implements Serializable{
 		this.isAuthenticated = isAuthenticated;
 	}
 
+	//Getter and Setters for Session below...
 	public String getRoleType() {
 		return roleType;
 	}

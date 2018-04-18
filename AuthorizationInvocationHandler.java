@@ -31,6 +31,7 @@ public class AuthorizationInvocationHandler implements InvocationHandler, Serial
 			if(session.getRoleType().equalsIgnoreCase(test.value())) {
 				return method.invoke(objectImpl, args);
 			}else {
+				//Unauthorized usage
 				throw new AuthorizationException(method.getName());
 			}
 		}else {

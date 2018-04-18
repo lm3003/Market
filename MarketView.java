@@ -5,7 +5,7 @@
 //
 //lmodi
 
-
+//Market view abstract class for abstract factory pattern
 public abstract class MarketView {
 	abstract void implementView();
 }

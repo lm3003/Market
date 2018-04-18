@@ -23,6 +23,7 @@ public class LoginView extends MarketView{
 		welcomePage();
 	}
 	
+	//Signup or Signin page
 	public void welcomePage() {
 		System.out.println("Welcom to Market App...\nWhat would you like to do today?\nPlease enter your selection: ");
 		System.out.println("1. Signup as a new customer\n2. Already a user? Signin");
