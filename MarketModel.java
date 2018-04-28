@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 // Ryan: Are you using all classes in the util package, if not please only include those you are.
@@ -33,15 +34,7 @@ public class MarketModel implements Serializable{
 	public synchronized boolean registerUser(User newUser) {
 		List<User> newUserList = new ArrayList<>();
 		newUserList.add(newUser);
-		try {
-    		Connection conn = this.db.dbConnect();
-    		this.db.addUsers(conn, newUserList);
-    		conn.close();
-    		return true;
-    	}catch(SQLException e) {
-	  		e.printStackTrace();
-	  	}
-    	return false;
+		return addUsers(newUserList);
 	}
 	
 	//authenticate user using this method
@@ -69,11 +62,12 @@ public class MarketModel implements Serializable{
     
     //add users using this method
     public synchronized boolean addUsers(List<User> addUserList) {
+    	boolean isAdded = false;
     	try {
     		Connection conn = this.db.dbConnect();
-    		this.db.addUsers(conn, addUserList);
+    		isAdded =  this.db.addUsers(conn, addUserList);
     		conn.close();
-    		return true;
+    		return isAdded;
     	}catch(SQLException e) {
 	  		e.printStackTrace();
 	  	}
@@ -146,17 +140,18 @@ public class MarketModel implements Serializable{
     
     //add to cart
     public synchronized boolean saveProductToCart(String username, int[] productInfo) {
+    	boolean isProductSaved = false;
     	try {
     		Connection conn = this.db.dbConnect();
     		int quantityInStock = this.db.getProductQuantity(conn, productInfo[0]);
     		if(quantityInStock != -1 && quantityInStock - productInfo[1] >= 0) {
-    			this.db.saveProductToCart(conn, username, productInfo);
+    			isProductSaved = this.db.saveProductToCart(conn, username, productInfo);
     		}else {
     			conn.close();
     			return false;
     		}
     		conn.close();
-    		return true;
+    		return isProductSaved;
     	}catch(SQLException e) {
 	  		e.printStackTrace();
 	  	}
@@ -169,6 +164,13 @@ public class MarketModel implements Serializable{
   		List<Item> shoppingCartProductList = viewShoppingCartProducts(username);
   		try {
   			Connection conn = this.db.dbConnect();
+  			Iterator<Item> it = shoppingCartProductList.iterator();
+			while(it.hasNext()) {
+				Item item = it.next();
+				int quantityInStock = this.db.getProductQuantity(conn, item.getId());
+				if(quantityInStock - item.getQuantity() < 0)
+					return false;
+			}
   			this.db.stockUpdate(conn, username, shoppingCartProductList);
   			conn.close();
   			return true;

@@ -28,17 +28,17 @@ public class LoginView extends MarketView{
 		System.out.println("Welcom to Market App...\nWhat would you like to do today?\nPlease enter your selection: ");
 		System.out.println("1. Signup as a new customer\n2. Already a user? Signin");
 		scanner = new Scanner(System.in);
-		int input = scanner.nextInt();
+		String input = scanner.nextLine();
 		switch(input) {
-		case 1: 
+		case "1": 
 			performSignup();
 			break;
-		case 2:
+		case "2":
 			performSignin();
 			break;
 		default:
-			System.out.println("Invalid input. Exiting system...");
-			System.exit(0);
+			System.out.println("Invalid input. Please give input again...");
+			welcomePage();
 		}
 	}
 	
@@ -51,7 +51,7 @@ public class LoginView extends MarketView{
 			System.out.println("User registered successfully!!");
 			performSignin();
 		}else {
-			System.out.println("A problem occured!! Please try again...");
+			System.out.println("A problem occured!! Username already exists. Please try again...");
 			performSignup();
 		}
 	}

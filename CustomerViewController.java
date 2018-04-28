@@ -53,7 +53,7 @@ public class CustomerViewController{
 				browseProducts(session);
 			break;
 		default:
-			System.out.println("Exiting system....");
+			System.out.println("Invalid input. Exiting system....");
 			System.exit(0);
 		}
 	}
@@ -82,7 +82,7 @@ public class CustomerViewController{
 				browseProducts(session);
 		}
 		else {
-			System.out.println("========!!!Invalid values entered, please check the id or quantity!!!=======");
+			System.out.println("========!!!Invalid values entered, Either item already exists in your cart or quantity invalid!!!=======");
 			browseProducts(session);
 		}	
 	}

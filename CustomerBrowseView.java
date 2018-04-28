@@ -27,14 +27,18 @@ public class CustomerBrowseView {
 		System.out.println("3. Browse Products");
 		System.out.println("4. View Products in your Cart");
 		System.err.println("5. Exit");
-		int input = Integer.parseInt(getInput());
-		return input;
+		String inp = getInput();
+		if(!inp.matches(("\\d+")))
+			return getInputFromUser();
+		if(Integer.parseInt(inp) <= 0 || Integer.parseInt(inp) > 5)
+			return getInputFromUser();
+		return Integer.parseInt(inp);
 	}
 	
 	//get input method for any method in this class
 	private String getInput() {
 		this.scanner = new Scanner(System.in);
-		String input = scanner.next();
+		String input = scanner.nextLine();
 		return input;
 	}
 	

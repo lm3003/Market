@@ -88,15 +88,25 @@ public class DatabaseConnect implements Serializable{
 		return catalog;
 	}
 	
-	public void saveProductToCart(Connection conn, String username, int[] productInfo) {
+	public boolean saveProductToCart(Connection conn, String username, int[] productInfo) {
 		if(conn != null) 
 		{
 			Statement stmt = null;
+			Statement stmt2 = null;
 			ResultSet rs = null;
+			ResultSet rs2 = null;
 			try 
 			{
 				stmt = (Statement) conn.createStatement();
+				stmt2 = (Statement) conn.createStatement();
 				try{
+						rs2 = stmt2.executeQuery( "SELECT * FROM tbl_shopping_cart_items "
+								+ "where `id`='"+productInfo[0]+"'" );
+						if(rs2.next()) {
+							System.out.println("within rs.next");
+							stmt2.close();
+							return false;
+						}
 						rs = stmt.executeQuery("Select * FROM tbl_items WHERE id ='"+productInfo[0]+"'");
 						if (!rs.isBeforeFirst()) {    
 							System.out.println("No products found"); 
@@ -108,7 +118,7 @@ public class DatabaseConnect implements Serializable{
 //										+ "VALUES ('"+rs.getInt("id")+"','"+rs.getString("name")+"','"+rs.getString("description")+"','"+rs.getInt("quantity")+"','"+rs.getFloat("price")+"')");
 								stmt.executeUpdate("INSERT INTO tbl_cart (`username`,`item_id`) "
 										+ "VALUES ('"+username+"','"+productInfo[0]+"')");
-							
+								return true;
 						}
 				}
 				catch(SQLException e3){
@@ -116,7 +126,7 @@ public class DatabaseConnect implements Serializable{
 					e3.printStackTrace();
 					System.exit(1);
 				}
-
+				stmt2.close();	
 				stmt.close();
 			} 
 			catch (SQLException e1) 
@@ -126,6 +136,7 @@ public class DatabaseConnect implements Serializable{
 				System.exit(1);
 			}
 		}
+		return false;
 	}
 	
 	public List<Item> getShoppingCartProducts(Connection conn, String username) {
@@ -244,7 +255,7 @@ public class DatabaseConnect implements Serializable{
 	}
 
 	//add products to inventory
-	public void addProducts(Connection conn, List<Item> catalog){
+	public boolean addProducts(Connection conn, List<Item> catalog){
 		if(conn != null) 
 		{
 			Statement stmt = null; 
@@ -260,6 +271,7 @@ public class DatabaseConnect implements Serializable{
 						stmt.executeUpdate("INSERT INTO tbl_items (`name`,`description`,`quantity`,`price`) "
 								+ "VALUES ('"+item.getName()+"','"+item.getDescription()+"','"+item.getQuantity()+"','"+item.getPrice()+"')");
 					}
+					return true;
 				}
 				catch(SQLException e3){
 					System.err.println("Unable to update SQL statement!"); 
@@ -276,6 +288,7 @@ public class DatabaseConnect implements Serializable{
 				System.exit(1);
 			}
 		}
+		return false;
 	}
 
 	//update products in inventory
@@ -390,10 +403,11 @@ public class DatabaseConnect implements Serializable{
 	}
 	
 	//add users to user table
-	public void addUsers(Connection conn, List<User> addUserList){
+	public boolean addUsers(Connection conn, List<User> addUserList){
 		if(conn != null) 
 		{
-			Statement stmt = null; 
+			Statement stmt = null;
+			ResultSet rs = null;
 			try 
 			{
 				stmt = (Statement) conn.createStatement();
@@ -402,11 +416,17 @@ public class DatabaseConnect implements Serializable{
 					while(it.hasNext())
 					{
 						User user = (User) it.next();
-						
+						rs = stmt.executeQuery( "SELECT * FROM tbl_users "
+								+ "where `username`='"+user.getUsername()+"'" );
+						if(rs.next()) {
+							System.out.println("within rs.next");
+							return false;
+						}
 						stmt.executeUpdate("INSERT INTO tbl_users (`firstname`, `lastname`, `username`,`password`, `roleType`) "
 								+ "VALUES ('"+user.getFirstname()+"','"+user.getLastname()+"','"
 								+ user.getUsername()+"','"+user.getPassword()+"','"+user.getRoleType()+"')");
 					}
+					return true;
 				}
 				catch(SQLException e3){
 					System.err.println("Unable to update SQL statement!"); 
@@ -423,6 +443,7 @@ public class DatabaseConnect implements Serializable{
 				System.exit(1);
 			}
 		}
+		return false;
 	}
 	
 	//delete users from the user table

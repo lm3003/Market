@@ -27,8 +27,12 @@ public class AdminBrowseView {
 		System.out.println("Please make your selection:");
 		System.out.println("1. Manage Admin and Customers \n2. Browse Products"
 				+ " \n3. Add Products \n4. Update Products \n5. Delete Products \n6. Exit");
-		int input = Integer.parseInt(getInput());
-		return input;
+		String inp = getInput();
+		if(!inp.matches(("\\d+")))
+			return getInputFromUser();
+		if(Integer.parseInt(inp) <= 0 || Integer.parseInt(inp) > 6)
+			return getInputFromUser();
+		return Integer.parseInt(inp);
 	}
 	
 	//method to get string input from user
@@ -42,8 +46,12 @@ public class AdminBrowseView {
 	public int getAdminCustomerAccountInput() {
 		System.out.println("Please make your selection: ");
 		System.out.println("1. Add Account \n2. Remove Account \n3. Exit");
-		int input = Integer.parseInt(getInput());
-		return input;
+		String inp = getInput();
+		if(!inp.matches(("\\d+")))
+			return getAdminCustomerAccountInput();
+		if(Integer.parseInt(inp) <= 0 || Integer.parseInt(inp) > 3)
+			return getAdminCustomerAccountInput();
+		return Integer.parseInt(inp);
 	}
 	
 	//method to get add account info
